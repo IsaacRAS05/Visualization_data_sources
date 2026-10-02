@@ -22,8 +22,8 @@ El **Web Scraping** es la técnica de extracción automatizada de datos no estru
 9. `url_producto`: Enlace de origen del producto.
 
 ## Archivos en esta carpeta:
-* **Fuente A:** `precios_canasta_scraping.csv` (Monitoreo automatizado de 18 alimentos esenciales en autoservicios locales de Mérida: Súper Akí, Chedraui, Dunosusa).
-* **Fuente B (EXTRA 1):** `precios_farmacias_conveniencia_merida.csv` (Monitoreo de canasta complementaria de higiene, salud e infancia en Farmacias Guadalajara, Similares y tiendas OXXO de Mérida).
-* `scraper_canasta_merida.py`: Script para autoservicios.
+* **Fuente A (Scraping):** `precios_canasta_scraping.csv` (Monitoreo automatizado de 18 alimentos esenciales en autoservicios locales de Mérida: Súper Akí, Chedraui, Dunosusa).
+* **Fuente A (Datos Reales Auditados por Cadena):** `precios_canasta_supermercados_reales.csv` (Extracción de 65 precios promedios, mínimos y máximos en Bodega Aurrera, Walmart, Chedraui, Soriana y Súper Akí a partir de la auditoría de inspectores PROFECO Mérida 2026).
+* `scraper_canasta_merida.py`: Script híbrido que combina web scraping resiliente con el extractor de datos reales auditados de PROFECO.
 * `scraper_farmacias_conveniencia_merida.py`: Script para farmacias y conveniencia.
 

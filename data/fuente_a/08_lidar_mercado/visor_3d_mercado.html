@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visor 3D LiDAR: Mercado Lucas de Gálvez (Mérida, Yucatán)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0a0f1d;
+      --panel-bg: rgba(15, 23, 42, 0.85);
+      --border-color: rgba(255, 255, 255, 0.12);
+      --accent-color: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.35);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --ground-color: #64748b;
+      --roof-color: #f59e0b;
+      --veg-color: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Outfit', sans-serif;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #webgl-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    /* HUD Header */
+    .hud-header {
+      position: absolute;
+      top: 20px;
+      left: 24px;
+      z-index: 10;
+      background: var(--panel-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 16px 22px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      pointer-events: auto;
+      max-width: 420px;
+    }
+
+    .hud-header h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hud-header h1 .badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: rgba(56, 189, 248, 0.2);
+      color: var(--accent-color);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      text-transform: uppercase;
+    }
+
+    .hud-header p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    /* Stats Panel */
+    .stats-panel {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      z-index: 10;
+      background: var(--panel-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      pointer-events: auto;
+      width: 320px;
+    }
+
+    .stats-panel h3 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-color);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.82rem;
+    }
+
+    .stat-row:last-child {
+      border-bottom: none;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+    }
+
+    .stat-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    /* Legend */
+    .legend-panel {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      z-index: 10;
+      background: var(--panel-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 16px 20px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      pointer-events: auto;
+      width: 250px;
+    }
+
+    .legend-panel h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .legend-color {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    /* Controls HUD */
+    .controls-hud {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      z-index: 10;
+      display: flex;
+      gap: 8px;
+      pointer-events: auto;
+    }
+
+    .btn-hud {
+      background: var(--panel-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-hud:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent-color);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* Point Tooltip */
+    #tooltip {
+      position: absolute;
+      z-index: 20;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.78rem;
+      pointer-events: none;
+      display: none;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+      transform: translate(-50%, -120%);
+    }
+
+    #tooltip .title {
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: 4px;
+    }
+
+    #tooltip .val {
+      font-family: 'JetBrains Mono', monospace;
+      color: #ffffff;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hud-header {
+        max-width: calc(100vw - 48px);
+      }
+      .legend-panel {
+        display: none;
+      }
+      .stats-panel {
+        width: calc(100vw - 48px);
+        bottom: 75px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Three.js Canvas -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <!-- Tooltip -->
+  <div id="tooltip">
+    <div class="title" id="tt-title">Punto LiDAR</div>
+    <div>Cota Z: <span class="val" id="tt-z"></span></div>
+    <div>Clase: <span class="val" id="tt-class"></span></div>
+    <div>Intensidad: <span class="val" id="tt-int"></span></div>
+  </div>
+
+  <!-- Header HUD -->
+  <div class="hud-header">
+    <h1>
+      Mercado Lucas de Gálvez
+      <span class="badge">LiDAR 3D</span>
+    </h1>
+    <p>Nube de retornos láser aerotransportados con clasificación ASPRS estándar. Calle 65 x 54, Centro Histórico de Mérida.</p>
+  </div>
+
+  <!-- Legend Panel -->
+  <div class="legend-panel">
+    <h4>Clasificación ASPRS</h4>
+    <div class="legend-item">
+      <div class="legend-color" style="background: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);"></div>
+      <span>Edificación / Domo Central (Clase 6)</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color" style="background: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);"></div>
+      <span>Vegetación Plaza (Clase 4/5)</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color" style="background: #64748b; box-shadow: 0 0 8px rgba(100, 116, 139, 0.6);"></div>
+      <span>Suelo / Vialidad C.65 (Clase 2)</span>
+    </div>
+  </div>
+
+  <!-- Statistics Panel -->
+  <div class="stats-panel">
+    <h3>
+      <span>Métricas Altimétricas</span>
+      <span style="font-size: 0.75rem; color: var(--text-muted);">WGS84 / UTM 16N</span>
+    </h3>
+    <div class="stat-row">
+      <span class="stat-label">Cota Base Terreno:</span>
+      <span class="stat-value">9.32 m s.n.m.</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Cota Máxima (Domo):</span>
+      <span class="stat-value" style="color: #f59e0b;">21.85 m s.n.m.</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Altura Neta Estructural:</span>
+      <span class="stat-value" style="color: #38bdf8;">12.53 metros</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Puntos Muestreados:</span>
+      <span class="stat-value" id="points-count">20 retornos</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Intensidad Media:</span>
+      <span class="stat-value">168 / 255</span>
+    </div>
+  </div>
+
+  <!-- Controls HUD -->
+  <div class="controls-hud">
+    <button class="btn-hud" id="btn-toggle-mesh">
+      <span>📐 Malla Estructural</span>
+    </button>
+    <button class="btn-hud" id="btn-reset-cam">
+      <span>🔄 Reset Vista</span>
+    </button>
+  </div>
+
+  <!-- Three.js + OrbitControls via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+  <script>
+    // 1. Datos LiDAR del Mercado Lucas de Gálvez (Extraídos directamente de lidar_mercado_merida_sample.csv)
+    const rawLidarPoints = [
+      { id: "P0001", x: 227350.12, y: 2319820.45, z: 9.25, intensity: 142, code: 2, label: "Suelo (Ground)" },
+      { id: "P0002", x: 227351.05, y: 2319820.80, z: 9.28, intensity: 138, code: 2, label: "Suelo (Ground)" },
+      { id: "P0003", x: 227352.40, y: 2319821.15, z: 9.31, intensity: 145, code: 2, label: "Suelo (Ground)" },
+      { id: "P0004", x: 227355.20, y: 2319825.10, z: 18.45, intensity: 210, code: 6, label: "Edificación (Techumbre Este)" },
+      { id: "P0005", x: 227356.10, y: 2319825.80, z: 18.52, intensity: 215, code: 6, label: "Edificación (Techumbre Este)" },
+      { id: "P0006", x: 227357.30, y: 2319826.50, z: 19.10, intensity: 225, code: 6, label: "Edificación (Cuerpo Principal)" },
+      { id: "P0007", x: 227358.50, y: 2319827.20, z: 19.25, intensity: 230, code: 6, label: "Edificación (Cuerpo Principal)" },
+      { id: "P0008", x: 227360.10, y: 2319828.90, z: 21.80, intensity: 195, code: 6, label: "Edificación (Domo Central)" },
+      { id: "P0009", x: 227361.40, y: 2319829.60, z: 21.85, intensity: 198, code: 6, label: "Edificación (Domo Central Cúspide)" },
+      { id: "P0010", x: 227362.80, y: 2319830.40, z: 21.75, intensity: 190, code: 6, label: "Edificación (Domo Central)" },
+      { id: "P0011", x: 227365.10, y: 2319835.20, z: 18.60, intensity: 205, code: 6, label: "Edificación (Techumbre Oeste)" },
+      { id: "P0012", x: 227370.20, y: 2319840.10, z: 9.40, intensity: 150, code: 2, label: "Suelo (Vialidad Calle 65)" },
+      { id: "P0013", x: 227371.50, y: 2319841.00, z: 9.38, intensity: 148, code: 2, label: "Suelo (Vialidad Calle 65)" },
+      { id: "P0014", x: 227375.30, y: 2319845.20, z: 14.20, intensity: 85, code: 4, label: "Vegetación Media (Árboles Plaza)" },
+      { id: "P0015", x: 227376.10, y: 2319846.10, z: 15.80, intensity: 78, code: 5, label: "Vegetación Alta (Árboles Plaza)" },
+      { id: "P0016", x: 227377.40, y: 2319847.00, z: 16.10, intensity: 72, code: 5, label: "Vegetación Alta (Árboles Plaza)" },
+      { id: "P0017", x: 227380.00, y: 2319850.50, z: 9.30, intensity: 155, code: 2, label: "Suelo (Banqueta Peatonal)" },
+      { id: "P0018", x: 227385.20, y: 2319855.10, z: 17.90, intensity: 202, code: 6, label: "Edificación (Comercio C.54)" },
+      { id: "P0019", x: 227386.50, y: 2319856.00, z: 18.10, intensity: 208, code: 6, label: "Edificación (Comercio C.54)" },
+      { id: "P0020", x: 227390.10, y: 2319860.20, z: 9.35, intensity: 160, code: 2, label: "Suelo (Cruce Peatonal)" }
+    ];
+
+    // 2. Configuración de Escena Three.js
+    const canvas = document.getElementById('webgl-canvas');
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x0a0f1d);
+    scene.fog = new THREE.FogExp2(0x0a0f1d, 0.012);
+
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.maxPolarAngle = Math.PI / 2 + 0.05; // Permitir vista ligeramente desde abajo
+
+    // Iluminación
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+    scene.add(ambientLight);
+
+    const dirLight = new THREE.DirectionalLight(0x38bdf8, 1.2);
+    dirLight.position.set(30, 50, 30);
+    scene.add(dirLight);
+
+    const pointLight = new THREE.PointLight(0xf59e0b, 1.5, 60);
+    pointLight.position.set(0, 15, 0);
+    scene.add(pointLight);
+
+    // Rejilla de Suelo Base
+    const gridHelper = new THREE.GridHelper(80, 40, 0x38bdf8, 0x1e293b);
+    gridHelper.position.y = 0;
+    scene.add(gridHelper);
+
+    // Ejes auxiliares
+    const axesHelper = new THREE.AxesHelper(15);
+    axesHelper.position.set(-25, 0.1, -25);
+    scene.add(axesHelper);
+
+    // Centroide de coordenadas UTM
+    const originX = 227370.0;
+    const originY = 2319840.0;
+    const groundZ = 9.30;
+
+    // Paleta de Colores ASPRS
+    const colorMap = {
+      2: new THREE.Color(0x64748b), // Suelo
+      4: new THREE.Color(0x10b981), // Vegetación
+      5: new THREE.Color(0x059669), // Vegetación alta
+      6: new THREE.Color(0xf59e0b)  // Edificación
+    };
+
+    // Renderizar Puntos como Esferas 3D con halo interactivo
+    const pointGroup = new THREE.Group();
+    const interactiveSpheres = [];
+
+    const sphereGeo = new THREE.SphereGeometry(0.7, 16, 16);
+
+    rawLidarPoints.forEach(pt => {
+      // Normalizar coordenadas respecto al centro del mercado
+      const posX = (pt.x - originX);
+      const posZ = (pt.y - originY);
+      const posY = (pt.z - groundZ); // Altura relativa al suelo
+
+      const col = colorMap[pt.code] || new THREE.Color(0xffffff);
+      const mat = new THREE.MeshStandardMaterial({
+        color: col,
+        roughness: 0.3,
+        metalness: 0.6,
+        emissive: col,
+        emissiveIntensity: pt.code === 6 ? 0.3 : 0.1
+      });
+
+      const sphere = new THREE.Mesh(sphereGeo, mat);
+      sphere.position.set(posX, posY, posZ);
+      sphere.userData = pt;
+      pointGroup.add(sphere);
+      interactiveSpheres.push(sphere);
+
+      // Línea de plomada hacia el suelo para los puntos elevados
+      if (posY > 1) {
+        const lineMat = new THREE.LineBasicMaterial({ color: 0x334155, transparent: true, opacity: 0.4 });
+        const lineGeo = new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(posX, 0, posZ),
+          new THREE.Vector3(posX, posY, posZ)
+        ]);
+        const dropLine = new THREE.Line(lineGeo, lineMat);
+        pointGroup.add(dropLine);
+      }
+    });
+
+    scene.add(pointGroup);
+
+    // Estructura Esquelética / Wireframe aproximada del Domo Central
+    const roofPoints = rawLidarPoints.filter(p => p.code === 6);
+    const buildingGeo = new THREE.BufferGeometry();
+    const vertices = [];
+
+    roofPoints.forEach(p1 => {
+      roofPoints.forEach(p2 => {
+        const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+        if (dist > 0 && dist < 12) {
+          vertices.push(p1.x - originX, p1.z - groundZ, p1.y - originY);
+          vertices.push(p2.x - originX, p2.z - groundZ, p2.y - originY);
+        }
+      });
+    });
+
+    buildingGeo.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+    const buildingMat = new THREE.LineBasicMaterial({
+      color: 0xf59e0b,
+      transparent: true,
+      opacity: 0.45
+    });
+    const buildingWireframe = new THREE.LineSegments(buildingGeo, buildingMat);
+    scene.add(buildingWireframe);
+
+    // Ajustar Posición Inicial de Cámara
+    function resetCamera() {
+      camera.position.set(28, 24, 42);
+      controls.target.set(0, 6, 0);
+      controls.update();
+    }
+    resetCamera();
+
+    // 3. Raycaster para Tooltip e Inspección al Pasar el Cursor
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+    const tooltip = document.getElementById('tooltip');
+    let hoveredMesh = null;
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+
+      raycaster.setFromCamera(mouse, camera);
+      const intersects = raycaster.intersectObjects(interactiveSpheres);
+
+      if (intersects.length > 0) {
+        const hit = intersects[0].object;
+        const data = hit.userData;
+
+        if (hoveredMesh !== hit) {
+          if (hoveredMesh) hoveredMesh.scale.set(1, 1, 1);
+          hoveredMesh = hit;
+          hoveredMesh.scale.set(1.4, 1.4, 1.4);
+        }
+
+        document.getElementById('tt-title').textContent = `${data.id}: ${data.label}`;
+        document.getElementById('tt-z').textContent = `${data.z.toFixed(2)} m s.n.m. (+${(data.z - groundZ).toFixed(2)}m)`;
+        document.getElementById('tt-class').textContent = `ASPRS ${data.code}`;
+        document.getElementById('tt-int').textContent = `${data.intensity} / 255`;
+
+        tooltip.style.left = `${e.clientX}px`;
+        tooltip.style.top = `${e.clientY}px`;
+        tooltip.style.display = 'block';
+      } else {
+        if (hoveredMesh) {
+          hoveredMesh.scale.set(1, 1, 1);
+          hoveredMesh = null;
+        }
+        tooltip.style.display = 'none';
+      }
+    });
+
+    // 4. Interacción con Botones HUD
+    let wireframeVisible = true;
+    document.getElementById('btn-toggle-mesh').addEventListener('click', () => {
+      wireframeVisible = !wireframeVisible;
+      buildingWireframe.visible = wireframeVisible;
+    });
+
+    document.getElementById('btn-reset-cam').addEventListener('click', resetCamera);
+
+    // 5. Redimensionamiento Responsivo
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // 6. Loop de Animación y Rotación Sutil
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+
+      // Rotación suave del domo de luz
+      const time = Date.now() * 0.001;
+      pointLight.position.x = Math.sin(time) * 10;
+      pointLight.position.z = Math.cos(time) * 10;
+
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+</body>
+</html>

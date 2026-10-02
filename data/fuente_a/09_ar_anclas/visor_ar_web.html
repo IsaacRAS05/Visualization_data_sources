@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Visor Web AR: Semáforo de Precios y Anclas Espaciales (Mérida)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(15, 23, 42, 0.88);
+      --border: rgba(255, 255, 255, 0.15);
+      --accent: #38bdf8;
+      --green: #10b981;
+      --yellow: #f59e0b;
+      --orange: #f97316;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    /* Video Background (Cámara Real) */
+    #camera-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      display: none;
+    }
+
+    /* Canvas 3D Three.js */
+    #ar-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+
+    /* Retícula AR de Fondo (Simulación si no hay cámara) */
+    .ar-simulation-grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background: radial-gradient(circle at center, #111827 0%, #050811 100%);
+    }
+
+    /* Mira de Enfoque AR */
+    .ar-reticle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      border: 2px dashed rgba(56, 189, 248, 0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .ar-reticle::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    /* Top HUD */
+    .top-hud {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .brand-pill {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      padding: 10px 18px;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      pointer-events: auto;
+    }
+
+    .brand-pill h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.7rem;
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--green);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      padding: 2px 7px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .badge-live .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 8px;
+      pointer-events: auto;
+    }
+
+    .btn-hud {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-hud:hover {
+      background: rgba(56, 189, 248, 0.18);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* Selector de Lugares / Anclas */
+    .anchor-selector-hud {
+      position: absolute;
+      top: 90px;
+      left: 20px;
+      z-index: 10;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      max-width: 90vw;
+    }
+
+    .btn-chip {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--muted);
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-chip.active, .btn-chip:hover {
+      background: var(--accent);
+      color: #030712;
+      font-weight: 700;
+      border-color: var(--accent);
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.5);
+    }
+
+    /* Tarjeta Flotante AR Activa (Bottom Sheet) */
+    .ar-card-sheet {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(500px, calc(100vw - 40px));
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+      z-index: 10;
+      transition: transform 0.3s ease;
+    }
+
+    .ar-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .ar-card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .ar-card-subtitle {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .semaforo-tag {
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      box-shadow: 0 0 12px currentColor;
+    }
+
+    .tag-green { background: rgba(16, 185, 129, 0.2); color: var(--green); border: 1px solid var(--green); }
+    .tag-yellow { background: rgba(245, 158, 11, 0.2); color: var(--yellow); border: 1px solid var(--yellow); }
+    .tag-orange { background: rgba(249, 115, 22, 0.2); color: var(--orange); border: 1px solid var(--orange); }
+
+    .ar-metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    .metric-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .metric-val {
+      font-size: 1.25rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      color: #fff;
+    }
+
+    .ar-featured-deal {
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 3px solid var(--accent);
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .gps-coords {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Modal / Instrucciones */
+    .help-hint {
+      position: absolute;
+      top: 140px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      z-index: 10;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Video de cámara en vivo para AR móvil -->
+  <video id="camera-video" playsinline autoplay muted></video>
+
+  <!-- Canvas WebGL Three.js -->
+  <canvas id="ar-canvas"></canvas>
+
+  <!-- Fondo de cuadrícula si no hay cámara activa -->
+  <div class="ar-simulation-grid" id="sim-grid"></div>
+
+  <!-- Mira óptica central -->
+  <div class="ar-reticle"></div>
+
+  <!-- Top HUD -->
+  <div class="top-hud">
+    <div class="brand-pill">
+      <h2>
+        <span>Mérida AR Geospatial</span>
+        <span class="badge-live"><span class="dot"></span> AR Activo</span>
+      </h2>
+      <p style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">
+        Anclas espaciales WGS84 & Semáforo de Canasta Básica
+      </p>
+    </div>
+
+    <div class="top-actions">
+      <button class="btn-hud" id="btn-toggle-cam">
+        <span id="cam-icon">📹</span> <span id="cam-text">Activar Cámara</span>
+      </button>
+      <button class="btn-hud" id="btn-recenter">
+        <span>🎯 Centrar</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Selector de Anclas Espaciales de Mérida -->
+  <div class="anchor-selector-hud" id="anchors-chips">
+    <!-- Generado dinámicamente -->
+  </div>
+
+  <div class="help-hint">
+    Arrastra con el mouse / dedo para explorar en 360° los puntos de abasto
+  </div>
+
+  <!-- Bottom Sheet con la información del ancla activa -->
+  <div class="ar-card-sheet" id="ar-sheet">
+    <div class="ar-card-header">
+      <div>
+        <div class="ar-card-title" id="card-lugar">Mercado Lucas de Gálvez</div>
+        <div class="ar-card-subtitle" id="card-anchor-id">AR-ANCHOR-001 • GeospatialTerrainAnchor</div>
+      </div>
+      <div class="semaforo-tag tag-green" id="card-tag">VERDE (Económico)</div>
+    </div>
+
+    <div class="ar-metrics-grid">
+      <div class="metric-box">
+        <div class="metric-label">Costo Semanal Canasta</div>
+        <div class="metric-val" id="card-costo">$1,420 MXN</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Ahorro vs Supermercado</div>
+        <div class="metric-val" style="color: var(--green);" id="card-ahorro">-26.5%</div>
+      </div>
+    </div>
+
+    <div class="ar-featured-deal">
+      <span>💡</span>
+      <span id="card-deal">Frijol Negro Jamapa ($32/kg) y Huevo ($44/kg)</span>
+    </div>
+
+    <div class="gps-coords">
+      <span id="card-coords">WGS84: -89.621210, 20.964115</span>
+      <span id="card-alt">Alt: 9.35 m s.n.m.</span>
+    </div>
+  </div>
+
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <script>
+    // 1. Datos Geoespaciales de Anclas (Desde spatial_anchors_merida.geojson)
+    const AR_ANCHORS = [
+      {
+        id: "AR-ANCHOR-001",
+        lugar: "Mercado Lucas de Gálvez",
+        subtitulo: "Acceso Principal Calle 65 x 54, Centro Histórico",
+        tipo: "GeospatialTerrainAnchor",
+        coords: [-89.621210, 20.964115, 9.35],
+        semaforo: "VERDE (Económico)",
+        tagClass: "tag-green",
+        costoSemanal: 1420.00,
+        ahorro: "-26.5%",
+        deal: "Frijol Negro Jamapa ($32/kg) y Huevo Blanco ($44/kg)",
+        yaw: 0.0,
+        distancia: 15
+      },
+      {
+        id: "AR-ANCHOR-002",
+        lugar: "Súper Akí Mercado",
+        subtitulo: "Fachada Comercial Calle 54, Centro",
+        tipo: "GeospatialRooftopAnchor",
+        coords: [-89.621450, 20.962534, 9.40],
+        semaforo: "AMARILLO (Medio)",
+        tagClass: "tag-yellow",
+        costoSemanal: 1780.00,
+        ahorro: "-9.2%",
+        deal: "Leche entera pasteurizada ($28/L) y Arroz ($22/kg)",
+        yaw: 1.4,
+        distancia: 18
+      },
+      {
+        id: "AR-ANCHOR-003",
+        lugar: "Bodega Aurrera Caucel",
+        subtitulo: "Av. Jacinto Canek x Periférico Poniente",
+        tipo: "GeospatialTerrainAnchor",
+        coords: [-89.697520, 20.998412, 8.10],
+        semaforo: "AMARILLO-VERDE",
+        tagClass: "tag-yellow",
+        costoSemanal: 1690.00,
+        ahorro: "-14.1%",
+        deal: "Aceite vegetal 1-2-3 ($41/900ml) y Harina ($18/kg)",
+        yaw: 2.8,
+        distancia: 20
+      },
+      {
+        id: "AR-ANCHOR-004",
+        lugar: "Chedraui Itzaes",
+        subtitulo: "Av. Itzaes x Calle 75, García Ginerés",
+        tipo: "GeospatialTerrainAnchor",
+        coords: [-89.637110, 20.981240, 9.80],
+        semaforo: "NARANJA (Medio-Alto)",
+        tagClass: "tag-orange",
+        costoSemanal: 1940.00,
+        ahorro: "Referencia Base",
+        deal: "Frijol negro Chedraui ($33.50/900g)",
+        yaw: 4.2,
+        distancia: 22
+      }
+    ];
+
+    let currentAnchorIndex = 0;
+
+    // 2. Configuración de Escena Three.js para AR
+    const canvas = document.getElementById('ar-canvas');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 1.6, 0); // Altura de ojos humanos en AR (1.6m)
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    // Luces
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+    scene.add(ambientLight);
+
+    const dirLight = new THREE.DirectionalLight(0x38bdf8, 1.5);
+    dirLight.position.set(5, 10, 7);
+    scene.add(dirLight);
+
+    // Malla de Piso Guía
+    const grid = new THREE.GridHelper(60, 30, 0x38bdf8, 0x1e293b);
+    grid.position.y = 0;
+    scene.add(grid);
+
+    // 3. Crear Anclas 3D en la Escena (Balizas Holográficas flotantes)
+    const anchorObjects = [];
+
+    function crearBaliza3D(anchor, index) {
+      const group = new THREE.Group();
+
+      // Posicionamiento en círculo orbital según ángulo yaw
+      const radius = anchor.distancia;
+      const posX = Math.sin(anchor.yaw) * radius;
+      const posZ = -Math.cos(anchor.yaw) * radius;
+      const posY = 1.8; // Flotando a 1.8 metros
+
+      group.position.set(posX, posY, posZ);
+
+      // Color según semáforo
+      let hexColor = 0x10b981; // Verde
+      if (anchor.tagClass === 'tag-yellow') hexColor = 0xf59e0b;
+      if (anchor.tagClass === 'tag-orange') hexColor = 0xf97316;
+
+      // 1. Diamante / Cristal Flotante
+      const diamondGeo = new THREE.OctahedronGeometry(0.8, 0);
+      const diamondMat = new THREE.MeshStandardMaterial({
+        color: hexColor,
+        roughness: 0.1,
+        metalness: 0.9,
+        emissive: hexColor,
+        emissiveIntensity: 0.4
+      });
+      const diamondMesh = new THREE.Mesh(diamondGeo, diamondMat);
+      diamondMesh.position.y = 1.0;
+      group.add(diamondMesh);
+
+      // 2. Anillo de Pulso Holográfico
+      const ringGeo = new THREE.TorusGeometry(1.2, 0.04, 16, 64);
+      const ringMat = new THREE.MeshBasicMaterial({ color: hexColor, wireframe: true });
+      const ringMesh = new THREE.Mesh(ringGeo, ringMat);
+      ringMesh.rotation.x = Math.PI / 2;
+      group.add(ringMesh);
+
+      // 3. Columna de Luz Vertical
+      const beamGeo = new THREE.CylinderGeometry(0.05, 0.05, 4, 8);
+      const beamMat = new THREE.MeshBasicMaterial({
+        color: hexColor,
+        transparent: true,
+        opacity: 0.35
+      });
+      const beamMesh = new THREE.Mesh(beamGeo, beamMat);
+      beamMesh.position.y = -0.5;
+      group.add(beamMesh);
+
+      // 4. Canasta de Alimentos 3D (Caja contenedora con productos modelados)
+      const basketGeo = new THREE.BoxGeometry(0.9, 0.4, 0.6);
+      const basketMat = new THREE.MeshStandardMaterial({ color: 0x854d0e, roughness: 0.8 });
+      const basketMesh = new THREE.Mesh(basketGeo, basketMat);
+      basketMesh.position.y = 0.2;
+      group.add(basketMesh);
+
+      // Huevos / Frutas dentro de la canasta
+      for (let i = -0.25; i <= 0.25; i += 0.25) {
+        const eggGeo = new THREE.SphereGeometry(0.12, 12, 12);
+        eggGeo.scale(1, 1.3, 1);
+        const eggMat = new THREE.MeshStandardMaterial({ color: 0xfef08a, roughness: 0.3 });
+        const egg = new THREE.Mesh(eggGeo, eggMat);
+        egg.position.set(i, 0.45, 0);
+        group.add(egg);
+      }
+
+      group.userData = { index, anchor, diamondMesh, ringMesh };
+      scene.add(group);
+      anchorObjects.push(group);
+    }
+
+    AR_ANCHORS.forEach((a, i) => crearBaliza3D(a, i));
+
+    // 4. Renderizar Botones de Selección
+    const chipsContainer = document.getElementById('anchors-chips');
+    AR_ANCHORS.forEach((anchor, i) => {
+      const btn = document.createElement('button');
+      btn.className = `btn-chip ${i === 0 ? 'active' : ''}`;
+      btn.textContent = `📍 ${anchor.lugar}`;
+      btn.addEventListener('click', () => selectAnchor(i));
+      chipsContainer.appendChild(btn);
+    });
+
+    function selectAnchor(index) {
+      currentAnchorIndex = index;
+      const anchor = AR_ANCHORS[index];
+
+      // Actualizar chips
+      document.querySelectorAll('.btn-chip').forEach((b, i) => {
+        b.classList.toggle('active', i === index);
+      });
+
+      // Actualizar Bottom Sheet UI
+      document.getElementById('card-lugar').textContent = anchor.lugar;
+      document.getElementById('card-anchor-id').textContent = `${anchor.id} • ${anchor.tipo}`;
+      document.getElementById('card-tag').textContent = anchor.semaforo;
+      document.getElementById('card-tag').className = `semaforo-tag ${anchor.tagClass}`;
+      document.getElementById('card-costo').textContent = `$${anchor.costoSemanal.toLocaleString()} MXN`;
+      document.getElementById('card-ahorro').textContent = anchor.ahorro;
+      document.getElementById('card-ahorro').style.color = anchor.tagClass === 'tag-green' ? 'var(--green)' : 'var(--yellow)';
+      document.getElementById('card-deal').textContent = anchor.deal;
+      document.getElementById('card-coords').textContent = `WGS84: ${anchor.coords[0].toFixed(6)}, ${anchor.coords[1].toFixed(6)}`;
+      document.getElementById('card-alt').textContent = `Alt: ${anchor.coords[2]} m s.n.m.`;
+
+      // Orientar la cámara hacia el ancla seleccionada
+      targetRotationY = anchor.yaw;
+    }
+
+    // 5. Control de Orientación / Cámara (Mouse Drag & Giroscopio Móvil)
+    let isDragging = false;
+    let prevMouseX = 0;
+    let cameraYaw = 0;
+    let targetRotationY = 0;
+
+    window.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      prevMouseX = e.clientX;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.clientX - prevMouseX;
+      prevMouseX = e.clientX;
+      targetRotationY -= deltaX * 0.005;
+    });
+
+    window.addEventListener('mouseup', () => isDragging = false);
+
+    // Soporte Táctil para Celulares
+    window.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        prevMouseX = e.touches[0].clientX;
+      }
+    });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!isDragging || e.touches.length !== 1) return;
+      const deltaX = e.touches[0].clientX - prevMouseX;
+      prevMouseX = e.touches[0].clientX;
+      targetRotationY -= deltaX * 0.006;
+    });
+
+    window.addEventListener('touchend', () => isDragging = false);
+
+    // Giroscopio si está disponible en dispositivos móviles
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener('deviceorientation', (e) => {
+        if (e.alpha !== null) {
+          // Convertir orientación de brújula a radianes Three.js
+          const alphaRad = THREE.MathUtils.degToRad(e.alpha);
+          targetRotationY = -alphaRad;
+        }
+      });
+    }
+
+    document.getElementById('btn-recenter').addEventListener('click', () => {
+      targetRotationY = AR_ANCHORS[currentAnchorIndex].yaw;
+    });
+
+    // 6. Activar Cámara Web Real (WebRTC getUserMedia)
+    let cameraActive = false;
+    const videoElem = document.getElementById('camera-video');
+    const simGrid = document.getElementById('sim-grid');
+    const btnToggleCam = document.getElementById('btn-toggle-cam');
+    const camText = document.getElementById('cam-text');
+
+    btnToggleCam.addEventListener('click', async () => {
+      if (!cameraActive) {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: 'environment' }
+          });
+          videoElem.srcObject = stream;
+          videoElem.style.display = 'block';
+          simGrid.style.display = 'none';
+          cameraActive = true;
+          camText.textContent = "Apagar Cámara";
+        } catch (err) {
+          alert("No se pudo acceder a la cámara trasera. Asegúrate de otorgar permisos o estar en HTTPS.");
+        }
+      } else {
+        if (videoElem.srcObject) {
+          videoElem.srcObject.getTracks().forEach(track => track.stop());
+        }
+        videoElem.style.display = 'none';
+        simGrid.style.display = 'block';
+        cameraActive = false;
+        camText.textContent = "Activar Cámara";
+      }
+    });
+
+    // 7. Redimensionamiento
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // 8. Loop de Animación y Rotación
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // Interpolación suave de rotación de cámara
+      cameraYaw += (targetRotationY - cameraYaw) * 0.08;
+      camera.rotation.y = cameraYaw;
+
+      // Animar balizas holográficas (flotación y giro)
+      const time = Date.now() * 0.002;
+      anchorObjects.forEach(obj => {
+        const { diamondMesh, ringMesh } = obj.userData;
+        diamondMesh.rotation.y += 0.02;
+        diamondMesh.rotation.x = Math.sin(time) * 0.15;
+        diamondMesh.position.y = 1.0 + Math.sin(time * 2) * 0.12;
+
+        ringMesh.rotation.z += 0.015;
+        const scale = 1.0 + Math.sin(time * 3) * 0.05;
+        ringMesh.scale.set(scale, scale, scale);
+      });
+
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+</body>
+</html>

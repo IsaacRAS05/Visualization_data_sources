@@ -83,6 +83,22 @@ Para comprobar el estado y resumen de los 18 datasets en cualquier momento, ejec
 python scripts/verificar_datasets.py
 ```
 
+## 🚀 Visores Interactivos y Experiencias Web (Listos para Abrir)
+
+El proyecto incluye aplicaciones web autónomas e interactivas que puedes abrir con doble clic en tu navegador:
+
+1. 🗺️ **[Visor SIG de Mercados Municipales](data/fuente_a/04_geoportal_merida/visor_mercados_municipales.html):** Mapa interactivo en Leaflet con la red de 8 mercados públicos de Mérida, fichas técnicas y radios de caminabilidad de 10 minutos a pie (isocronas de 800m).
+2. 🏛️ **[Visor 3D LiDAR Mercado Lucas de Gálvez](data/fuente_a/08_lidar_mercado/visor_3d_mercado.html):** Espacio 3D en Three.js para orbitar, inspeccionar y medir las cotas altimétricas del domo y la techumbre del mercado central a partir de la nube de retornos láser.
+3. 📱 **[Visor WebXR / AR de Semáforo de Precios](data/fuente_a/09_ar_anclas/visor_ar_web.html):** Experiencia de Realidad Aumentada con cámara en vivo o simulación 360° para proyectar anclas espaciales y semáforos de canasta básica sobre las coordenadas de los mercados de Mérida.
+
+---
+
+## 👥 Colaboración del Equipo
+
+* Consulta [`GUIA_FUENTES_Y_EQUIPO.md`](GUIA_FUENTES_Y_EQUIPO.md) para el reparto de la Fuente C.
+* Consulta [`PROTOCOLO_INTEGRACION_PERSONA_B.md`](PROTOCOLO_INTEGRACION_PERSONA_B.md) para la guía paso a paso del integrante asignado a la Fuente B.
+* Consulta [`FUENTES_DE_DATOS.md`](FUENTES_DE_DATOS.md) para los enlaces de origen de cada institución.
+
 ---
 
 ## 📌 Control de Estado y Notas de Ejecución
@@ -93,4 +109,4 @@ python scripts/verificar_datasets.py
 * **Encuestas en Campo (07-A y 07-B):**
   * 📋 Contamos con 25 encuestas de hogares y 5 tienditas auditadas en piloto. Los instrumentos y cuestionarios están listos para ampliar la muestra en colonias de Mérida.
 * **Scraping de Supermercados y Farmacias (06-A y 06-B):**
-  * 💻 Scripts funcionales con pausas éticas (2-5 segundos) para no saturar servidores ni gatillar bloqueos de IP (WAF/Cloudflare).
+  * 💻 Scripts funcionales con pausas éticas (2-5 segundos) y extractor conectado a los **28,288 precios reales de inspectores PROFECO en Mérida** ([`precios_canasta_supermercados_reales.csv`](data/fuente_a/06_scraping_autoservicios/precios_canasta_supermercados_reales.csv)).

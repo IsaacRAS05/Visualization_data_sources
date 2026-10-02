@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visor SIG: Red de Mercados Municipales de Mérida</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --card-bg: rgba(15, 23, 42, 0.90);
+      --border: rgba(255, 255, 255, 0.12);
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.3);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --green: #10b981;
+      --yellow: #f59e0b;
+      --orange: #f97316;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+    }
+
+    #map {
+      flex: 1;
+      height: 100%;
+      z-index: 1;
+      background: #0b1120;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 400px;
+      height: 100%;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      z-index: 10;
+      box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+    }
+
+    .sidebar-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar-header h1 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sidebar-header p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .summary-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 10px;
+      padding: 10px 14px;
+    }
+
+    .summary-card .label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .summary-card .val {
+      font-size: 1.25rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent);
+      margin-top: 2px;
+    }
+
+    /* Filter Toolbar */
+    .filter-bar {
+      padding: 14px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .filter-bar label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .filter-bar input[type="checkbox"] {
+      accent-color: var(--accent);
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    /* Markets List */
+    .markets-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .markets-list::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .markets-list::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+    }
+
+    .market-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .market-card:hover, .market-card.active {
+      background: rgba(56, 189, 248, 0.08);
+      border-color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    .market-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    .market-card-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .market-badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .badge-primary { background: rgba(56, 189, 248, 0.2); color: var(--accent); border: 1px solid rgba(56, 189, 248, 0.4); }
+    .badge-barrio { background: rgba(16, 185, 129, 0.2); color: var(--green); border: 1px solid rgba(16, 185, 129, 0.4); }
+
+    .market-card-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .market-card-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: #cbd5e1;
+    }
+
+    /* Custom Leaflet Marker Styling */
+    .market-custom-marker {
+      background: #0f172a;
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      box-shadow: 0 0 14px var(--accent-glow);
+      transition: transform 0.2s ease;
+    }
+
+    .market-custom-marker.hub {
+      border-color: #f59e0b;
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+      width: 36px !important;
+      height: 36px !important;
+      font-size: 18px;
+    }
+
+    /* Leaflet Popup Styling */
+    .leaflet-popup-content-wrapper {
+      background: var(--card-bg) !important;
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      color: var(--text) !important;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.6) !important;
+      padding: 4px;
+    }
+
+    .leaflet-popup-tip {
+      background: var(--card-bg) !important;
+    }
+
+    .popup-box h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .popup-box .type-sub {
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .popup-box .info-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .popup-box .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .popup-box .info-label {
+      color: var(--muted);
+    }
+
+    .popup-box .info-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      body {
+        flex-direction: column-reverse;
+      }
+      .sidebar {
+        width: 100vw;
+        height: 45vh;
+      }
+      #map {
+        height: 55vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar Panel -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h1>
+        <span>🏛️ Mercados de Mérida</span>
+      </h1>
+      <p>Red oficial de abasto alimentario minorista y mayorista. Geoportal del Ayuntamiento de Mérida.</p>
+
+      <div class="summary-grid">
+        <div class="summary-card">
+          <div class="label">Total Locales Activos</div>
+          <div class="val" id="total-locales">2,619</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Afluencia Diaria Est.</div>
+          <div class="val" id="total-afluencia">76,300</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <label>
+        <input type="checkbox" id="check-isochrones" checked>
+        <span>Isocronas de 10 min a pie (800m)</span>
+      </label>
+      <button class="badge-primary" id="btn-fit-all" style="background:transparent; border:none; cursor:pointer;">
+        Zoom Todo
+      </button>
+    </div>
+
+    <!-- Lista interactiva de los 8 mercados -->
+    <div class="markets-list" id="markets-container">
+      <!-- Generado dinámicamente -->
+    </div>
+  </aside>
+
+  <!-- Interactive Map -->
+  <div id="map"></div>
+
+  <!-- Leaflet JS CDN -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <script>
+    // 1. Datos GeoJSON Oficiales de los 8 Mercados Municipales
+    const mercadosData = {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "id": 1,
+            "nombre": "Mercado Lucas de Gálvez",
+            "tipo": "Mercado Central Mayorista y Minorista",
+            "categoria": "Hub Central",
+            "colonia": "Centro",
+            "direccion": "Calle 65 x 54 y 56",
+            "locales": 1250,
+            "giro": "Carnes, frutas, verduras, abarrotes, pescados y comidas",
+            "precios": "Bajo (Precios de mayoreo/menudeo)",
+            "afluencia": 35000,
+            "horario": "05:00 - 18:00 hrs"
+          },
+          "geometry": { "type": "Point", "coordinates": [-89.621210, 20.964115] }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "id": 2,
+            "nombre": "Mercado San Benito",
+            "tipo": "Mercado Central Concentrador",
+            "categoria": "Hub Central",
+            "colonia": "Centro",
+            "direccion": "Calle 54 x 67 y 69",
+            "locales": 890,
+            "giro": "Granos y semillas, carnes, verduras y hierbas medicinales",
+            "precios": "Muy Bajo",
+            "afluencia": 25000,
+            "horario": "05:00 - 18:00 hrs"
+          },
+          "geometry": { "type": "Point", "coordinates": [-89.622580, 20.961910] }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "id": 3,
+            "nombre": "Mercado Santos Degollado (Santiago)",
+            "tipo": "Mercado de Barrio Tradicional",
+            "categoria": "Barrio",
+            "colonia": "Barrio de Santiago",
+            "direccion": "Calle 59 x 70 y 72",
+            "locales": 115,
+            "giro": "Comida preparada, frutas de temporada, carne fresca",
+            "precios": "Medio",
+            "afluencia": 4500,
+            "horario": "06:00 - 15:00 hrs"
+          },
+          "geometry": { "type": "Point", "coordinates": [-89.628950, 20.970140] }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "id": 4,
+            "nombre": "Mercado de Santa Ana",
+            "tipo": "Mercado Gastronómico y Vecinal",
+            "categoria": "Barrio",
+            "colonia": "Barrio de Santa Ana",
+            "direccion": "Calle 60 x 47",
+            "locales": 68,
+            "giro": "Alimentos preparados, juguerías, frutas y verduras",
+            "precios": "Medio-Alto",
+            "afluencia": 3200,
+            "horario": "06:00 - 16:00 hrs"
+          },
+          "geometry": { "type": "Point", "coordinates": [-89.620850, 20.975410] }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "id": 5,
+            "nombre": "Mercado de San Sebastián",
+            "tipo": "Mercado de Barrio Tradicional",
+            "categoria": "Barrio",
+            "colonia": "Barrio de San Sebastián",
+            "direccion": "Calle 70 x 75",
+            "locales": 85,
+            "giro": "Abarrotes, tortillería, carnes rojas y verduras",
+            "precios": "Bajo",
+            "afluencia": 3800,
+            "horario": "06:00 - 14:00 hrs"
+          },
+          "geometry": { "type": "Point", "coordinates": [-89.630410, 20.957820] }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "id": 6,
+            "nombre": "Mercado de Chembech",
+            "tipo": "Mercado Periférico Oriente",
+            "categoria": "Barrio",
+            "colonia": "Esperanza / Chembech",
+            "direccion": "Calle 42 x 57",
+            "locales": 92,
+            "giro": "Carnicería de cerdo, pollo fresco, abarrotes y condimentos",
+            "precios": "Bajo",
+            "afluencia": 3100,
+            "horario": "06:00 - 14:00 hrs"
+          },
+          "geometry": { "type": "Point", "coordinates": [-89.608420, 20.969850] }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "id": 7,
+            "nombre": "Mercado de Chuburná de Hidalgo",
+            "tipo": "Mercado de Barrio Norte",
+            "categoria": "Barrio",
+            "colonia": "Chuburná de Hidalgo",
+            "direccion": "Calle 20 x 21",
+            "locales": 74,
+            "giro": "Verduras, tortillas, carne de res y cerdo, antojitos",
+            "precios": "Medio",
+            "afluencia": 2800,
+            "horario": "06:00 - 14:00 hrs"
+          },
+          "geometry": { "type": "Point", "coordinates": [-89.642100, 21.011240] }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "id": 8,
+            "nombre": "Mercado de Chenkú",
+            "tipo": "Mercado de Barrio Poniente",
+            "categoria": "Barrio",
+            "colonia": "Residencial Chenkú",
+            "direccion": "Calle 38 x 21 y 23",
+            "locales": 45,
+            "giro": "Abarrotes, frutas frescas, recaudería y carnicería",
+            "precios": "Medio-Bajo",
+            "afluencia": 1900,
+            "horario": "06:00 - 14:00 hrs"
+          },
+          "geometry": { "type": "Point", "coordinates": [-89.658720, 21.002840] }
+        }
+      ]
+    };
+
+    // 2. Inicializar Mapa Leaflet con Tiles Oscuros CartoDB
+    const map = L.map('map', {
+      center: [20.975, -89.630],
+      zoom: 13,
+      zoomControl: false
+    });
+
+    L.control.zoom({ position: 'topright' }).addTo(map);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://carto.com/">CARTO</a> | Datos: Ayuntamiento de Mérida',
+      maxZoom: 19
+    }).addTo(map);
+
+    // Grupos de Capas
+    const markersGroup = L.featureGroup().addTo(map);
+    const isochronesGroup = L.featureGroup().addTo(map);
+    const markerRegistry = {};
+
+    // 3. Dibujar Mercados y Buffers
+    mercadosData.features.forEach(feat => {
+      const p = feat.properties;
+      const coords = [feat.geometry.coordinates[1], feat.geometry.coordinates[0]];
+      const isHub = p.categoria === 'Hub Central';
+
+      // A. Isocrona de Caminabilidad (800m = ~10 minutos caminando)
+      const circle = L.circle(coords, {
+        radius: 800,
+        color: isHub ? '#f59e0b' : '#38bdf8',
+        weight: 1.5,
+        opacity: 0.7,
+        fillColor: isHub ? '#f59e0b' : '#38bdf8',
+        fillOpacity: isHub ? 0.12 : 0.08,
+        dashArray: '4, 6'
+      });
+      isochronesGroup.addLayer(circle);
+
+      // B. Marcador Personalizado
+      const iconHtml = `<div class="market-custom-marker ${isHub ? 'hub' : ''}">${isHub ? '🏛️' : '🛒'}</div>`;
+      const customIcon = L.divIcon({
+        className: 'market-marker-wrapper',
+        html: iconHtml,
+        iconSize: [28, 28],
+        iconAnchor: [14, 14]
+      });
+
+      const marker = L.marker(coords, { icon: customIcon });
+
+      // Popup
+      const popupContent = `
+        <div class="popup-box">
+          <h3>${p.nombre}</h3>
+          <div class="type-sub">${p.tipo}</div>
+          <div class="info-row">
+            <span class="info-label">Locales Activos:</span>
+            <span class="info-val">${p.locales.toLocaleString()}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Afluencia Diaria:</span>
+            <span class="info-val">~${p.afluencia.toLocaleString()} pers.</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Giro Principal:</span>
+            <span class="info-val" style="font-size:0.75rem;">${p.giro}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Nivel de Precios:</span>
+            <span class="info-val" style="color:#10b981;">${p.precios}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Horario:</span>
+            <span class="info-val">${p.horario}</span>
+          </div>
+        </div>
+      `;
+
+      marker.bindPopup(popupContent);
+      markersGroup.addLayer(marker);
+      markerRegistry[p.id] = { marker, coords, card: null };
+    });
+
+    // 4. Renderizar Lista en Sidebar
+    const listContainer = document.getElementById('markets-container');
+
+    mercadosData.features.forEach(feat => {
+      const p = feat.properties;
+      const isHub = p.categoria === 'Hub Central';
+
+      const card = document.createElement('div');
+      card.className = 'market-card';
+      card.innerHTML = `
+        <div class="market-card-top">
+          <div class="market-card-name">${p.nombre}</div>
+          <div class="market-badge ${isHub ? 'badge-primary' : 'badge-barrio'}">
+            ${isHub ? 'Hub Central' : 'Mercado de Barrio'}
+          </div>
+        </div>
+        <div class="market-card-desc">📍 ${p.direccion} (${p.colonia})</div>
+        <div class="market-card-meta">
+          <span>🏪 ${p.locales} locales</span>
+          <span>👥 ~${(p.afluencia / 1000).toFixed(1)}k/día</span>
+          <span style="color:var(--green);">${p.precios.split(' ')[0]}</span>
+        </div>
+      `;
+
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.market-card').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+
+        const { marker, coords } = markerRegistry[p.id];
+        map.flyTo(coords, 16, { duration: 1.2 });
+        marker.openPopup();
+      });
+
+      listContainer.appendChild(card);
+      markerRegistry[p.id].card = card;
+    });
+
+    // 5. Controles y Toggles
+    const checkIsochrones = document.getElementById('check-isochrones');
+    checkIsochrones.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        map.addLayer(isochronesGroup);
+      } else {
+        map.removeLayer(isochronesGroup);
+      }
+    });
+
+    document.getElementById('btn-fit-all').addEventListener('click', () => {
+      map.fitBounds(markersGroup.getBounds(), { padding: [40, 40] });
+    });
+
+    // Ajustar vista inicial
+    map.fitBounds(markersGroup.getBounds(), { padding: [50, 50] });
+  </script>
+</body>
+</html>
