@@ -184,23 +184,42 @@ Para cumplir con el requerimiento del profesor (**3 fuentes por cada uno de los 
 
 ---
 
-## 4. Sugerencia de Reparto de Tareas para el Equipo (Fuente C - Las 9 Restantes)
+## 4. Reparto Oficial de Fuentes por Integrante (27 Fuentes en Total)
 
-Como la **Fuente A** y la **Fuente B** ya están 100% integradas en el repositorio (18 datasets listos), a tu equipo **solo le resta aportar la Fuente C (9 fuentes finales)**:
+El proyecto está distribuido de manera equitativa entre los **3 integrantes del equipo (9 fuentes por integrante = 27 fuentes)**:
 
-* 👤 **Integrante 1 (Datos Laborales y Transparencia):**
-  * Descarga microdatos ENOE sobre ingresos laborales en Yucatán (**01-C**).
-  * Ingresa la solicitud PNT ante Salubridad / COFEPRIS (**05-C**).
-* 👤 **Integrante 2 (Programas Sociales, Movilidad y Empleo):**
-  * Descarga el padrón de Tiendas Comunitarias DICONSA en datos.gob.mx (**02-C**).
-  * Descarga el boletín mensual de empleo IMSS Yucatán (**03-C**).
-  * Exporta las rutas del sistema Va y Ven hacia los mercados del Centro (**04-C**).
-* 👤 **Integrante 3 (Scraping Digital y Entrevistas):**
-  * Corre el scraper de catálogos en apps de Delivery Rappi / UberEats (**06-C**).
-  * Aplica las 3 entrevistas breves a locatarios del Mercado Lucas de Gálvez (**07-C**).
-* 👤 **Integrante 4 (Tecnologías Espaciales y AR):**
-  * Descarga el modelo de elevación global en OpenTopography / USGS (**08-C**).
-  * Diseña el archivo de waypoints para la ruta de navegación peatonal AR (**09-C**).
+* 👤 **Valeria Nicol Hernández León — Responsable de Fuente A (9 fuentes):**
+  * `01-A` INEGI / DENUE (7,520 comercios de canasta básica en Mérida).
+  * `02-A` datos.gob.mx / PROFECO (28,288 precios reales QQP Mérida 2026).
+  * `03-A` SIEGY Yucatán (PEA, salario IMSS y costo de canasta urbana).
+  * `04-A` Geoportal Mérida (Capa SIG de los 8 mercados públicos municipales).
+  * `05-A` Solicitud PNT (Trámite formal al H. Ayuntamiento de Mérida sobre locatarios).
+  * `06-A` Web Scraping (18 productos básicos en autoservicios locales Akí/Dunosusa).
+  * `07-A` Self-Produced (Encuesta formal de campo aplicada a 25 hogares).
+  * `08-A` LiDAR 3D (Nube de puntos ASPRS clasificada del Mercado Lucas de Gálvez).
+  * `09-A` AR Geospatial (Anclas espaciales VPS para semáforos de precios en fachadas).
+
+* 👤 **Jorge Ramiro Chay Koyoc — Responsable de Fuente B (9 fuentes):**
+  * `01-B` INEGI / Censos Económicos SAIC (Ingresos, personal y salarios en alimentos).
+  * `02-B` datos.gob.mx / SNIIM (Precios de mayoreo diarios en la Central de Abasto).
+  * `03-B` CONAPO / SIEGY (Índice de marginación urbana por colonias en Mérida).
+  * `04-B` Geoportal Mérida (Capa SIG de tianguis y comercio rodante autorizado).
+  * `05-B` Solicitud PNT (Trámite a la Central de Abasto sobre pesajes y toneladas).
+  * `06-B` Web Scraping (Monitoreo en Farmacias Guadalajara y tiendas OXXO).
+  * `07-B` Self-Produced (Auditoría de góndola en 5 tienditas de la esquina de Mérida).
+  * `08-B` LiDAR / CEM (Malla de elevación continua CEM 3.0 de INEGI para drenaje).
+  * `09-B` AR Geospatial (Catálogo y especificación de modelos 3D glTF/GLB para AR).
+
+* 👤 **Isaac René Andrade Sánchez — Responsable de Fuente C (9 fuentes):**
+  * `01-C` INEGI / ENOE (Microdatos 1T-2025 de hogares, viviendas y 45 catálogos).
+  * `02-C` SEGALMEX / DICONSA (Catálogo oficial de artículos y proveedores DICONSA).
+  * `03-C` SENASICA / SEDER (Inspección fitozoosanitaria y movilización agropecuaria).
+  * `04-C` IMDUT / Va y Ven (565 rutas y paraderos de transporte conectando al Centro).
+  * `05-C` PNT / Sector Salud (Tabulador de remuneraciones de salubridad).
+  * `06-C` Web Scraping (2,501 tickets comparando compra física vs delivery Rappi/Uber).
+  * `07-C` Self-Produced (3 entrevistas estructuradas a locatarios del Lucas de Gálvez).
+  * `08-C` OpenTopography (2,401 cotas satelitales SRTM/NASADEM Mérida vs montañas).
+  * `09-C` AR Geospatial (Ruta de 6 waypoints AR hacia el pasillo más barato del mercado).
 
 ---
 

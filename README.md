@@ -102,11 +102,16 @@ El proyecto incluye aplicaciones web autónomas e interactivas que puedes abrir 
 
 ---
 
-## 👥 Colaboración del Equipo
+## 👥 Integrantes del Equipo y Reparto de Fuentes
 
-* Consulta [`GUIA_FUENTES_Y_EQUIPO.md`](GUIA_FUENTES_Y_EQUIPO.md) para el reparto de la Fuente C.
-* Consulta [`PROTOCOLO_INTEGRACION_PERSONA_B.md`](PROTOCOLO_INTEGRACION_PERSONA_B.md) para la guía paso a paso del integrante asignado a la Fuente B.
-* Consulta [`FUENTES_DE_DATOS.md`](FUENTES_DE_DATOS.md) para los enlaces de origen de cada institución.
+* 👤 **Valeria Nicol Hernández León** — *Responsable de Fuente A* (Módulos 01-A a 09-A: DENUE Alimentos, PROFECO QQP 2026, SIEGY Indicadores Estatales, Geoportal Mercados Municipales, Solicitud PNT Ayto. Mérida, Scraper Autoservicios, Encuesta Hogares Mérida, LiDAR Domo Lucas de Gálvez, AR WebXR Anclas).
+* 👤 **Jorge Ramiro Chay Koyoc** — *Responsable de Fuente B* (Módulos 01-B a 09-B: Censos Económicos SAIC, Precios Mayoreo SNIIM Central de Abasto, CONAPO Marginación Urbana, Geoportal Tianguis, Solicitud PNT Central de Abasto, Scraper Farmacias/OXXO, Bitácora Tienditas, CEM MDE 3.0, Catálogo Modelos 3D).
+* 👤 **Isaac René Andrade Sánchez** — *Responsable de Fuente C* (Módulos 01-C a 09-C: Microdatos ENOE 2025 1T, Padrón DICONSA/SEGALMEX, Inspección Sanitaria SENASICA, Rutas Va y Ven, PNT Sueldos Salud, Scraping Apps Delivery, Entrevistas Locatarios Lucas de Gálvez, Topografía SRTM/NASADEM, Waypoints AR).
+
+> 📄 **Documentación adicional de apoyo:**  
+> * Consulta [`GUIA_FUENTES_Y_EQUIPO.md`](GUIA_FUENTES_Y_EQUIPO.md) para el detalle metodológico de los 9 subtemas.  
+> * Consulta [`PROTOCOLO_INTEGRACION_PERSONA_B.md`](PROTOCOLO_INTEGRACION_PERSONA_B.md) para la guía técnica de integración de la Fuente B.  
+> * Consulta [`FUENTES_DE_DATOS.md`](FUENTES_DE_DATOS.md) para el catálogo maestro de referencias con sus enlaces oficiales.
 
 ---
 

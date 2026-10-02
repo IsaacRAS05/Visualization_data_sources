@@ -1,7 +1,7 @@
 # Protocolo de Integración y Colaboración: Fuente B
-### Guía Técnica para el Integrante Encargado de la Fuente B
+### Guía Técnica para Jorge Ramiro Chay Koyoc (Responsable de Fuente B)
 
-¡Bienvenido(a) al repositorio del proyecto **"Del Mundo a la Esquina: ¿Cuánto Cuesta Comer?"**!
+¡Bienvenido, **Jorge**, al repositorio del proyecto **"Del Mundo a la Esquina: ¿Cuánto Cuesta Comer?"**!
 
 Este documento explica cómo está organizada la **Fuente B**, qué contiene cada una de tus 9 carpetas y las instrucciones exactas para que integres tus datos sin generar ningún conflicto de código o de Git (*merge conflicts*).
 

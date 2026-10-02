@@ -2,6 +2,11 @@
 ## Proyecto: "Del Mundo a la Esquina: ¿Cuánto Cuesta Comer?"
 ### Radiografía multiescalar del salario y la canasta básica: del panorama internacional al territorio de Mérida
 
+**👥 Integrantes del Equipo de Investigación:**
+* 👤 **Valeria Nicol Hernández León** — *Responsable de Fuente A*
+* 👤 **Jorge Ramiro Chay Koyoc** — *Responsable de Fuente B*
+* 👤 **Isaac René Andrade Sánchez** — *Responsable de Fuente C*
+
 > 📌 **Estado del Repositorio:** **27 de 27 fuentes listas, verificadas e integradas al 100%** en el repositorio.  
 > Cada una de las 9 categorías temáticas cuenta con sus **3 fuentes independientes** (Fuente A, Fuente B y Fuente C).
 
