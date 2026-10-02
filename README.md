@@ -11,10 +11,10 @@ Este repositorio consolida los datasets, scripts y especificaciones técnicas or
 
 ## Estructura Modular del Repositorio
 
-El repositorio está organizado en tres grandes carpetas para facilitar la colaboración del equipo:
-* 📂 **`data/fuente_a/`**: Los 9 datasets de la primera ronda (100% listos e integrados).
-* 📂 **`data/fuente_b/`**: Los 9 datasets complementarios de la segunda ronda (100% listos e integrados).
-* 📂 **`data/fuente_c/`**: Carpetas preparadas con guías para que el equipo suba los 9 datasets finales.
+El repositorio está organizado en tres grandes carpetas para consolidar el trabajo del equipo:
+* 📂 **`data/fuente_a/`**: Los 9 datasets del primer bloque (100% listos e integrados).
+* 📂 **`data/fuente_b/`**: Los 9 datasets complementarios del segundo bloque (100% listos e integrados).
+* 📂 **`data/fuente_c/`**: Los 9 datasets del tercer bloque aportados por el equipo (100% listos e integrados).
 
 ```text
 victorrr/
@@ -39,7 +39,7 @@ victorrr/
 │   │   ├── 07_bitacora_tienditas/
 │   │   ├── 08_lidar_cem_mde/
 │   │   └── 09_ar_modelos_3d/
-│   └── fuente_c/  (Asignada al equipo para las 9 fuentes finales)
+│   └── fuente_c/  (Los 9 datasets finales ya integrados y verificados)
 ├── scripts/
 │   └── verificar_datasets.py
 ├── .gitignore
