@@ -29,7 +29,18 @@ FUENTES = [
     {"num": "06-B", "grupo": "Fuente B", "tema": "Web Scraping", "folder": "fuente_b/06_scraping_farmacias", "archivo": "precios_farmacias_conveniencia_merida.csv", "tipo": "CSV Python Scraper", "desc": "Canasta complementaria en Farmacias Guadalajara y OXXO"},
     {"num": "07-B", "grupo": "Fuente B", "tema": "Self-Produced", "folder": "fuente_b/07_bitacora_tienditas", "archivo": "bitacora_precios_tienditas.csv", "tipo": "CSV Auditoría", "desc": "Auditoría de precios en 5 tienditas de esquina de Mérida"},
     {"num": "08-B", "grupo": "Fuente B", "tema": "LiDAR / CEM", "folder": "fuente_b/08_lidar_cem_mde", "archivo": "inegi_cem_mde_merida_grid.csv", "tipo": "CSV Malla MDE", "desc": "Malla CEM 3.0 INEGI Mérida con pendientes y encharcamientos"},
-    {"num": "09-B", "grupo": "Fuente B", "tema": "AR Geospatial", "folder": "fuente_b/09_ar_modelos_3d", "archivo": "catalogo_modelos_3d_canasta.json", "tipo": "JSON Catálogo 3D", "desc": "Modelos 3D glTF/GLB de alimentos y tarjetas HUD holográficas"}
+    {"num": "09-B", "grupo": "Fuente B", "tema": "AR Geospatial", "folder": "fuente_b/09_ar_modelos_3d", "archivo": "catalogo_modelos_3d_canasta.json", "tipo": "JSON Catálogo 3D", "desc": "Modelos 3D glTF/GLB de alimentos y tarjetas HUD holográficas"},
+
+    # FUENTE C
+    {"num": "01-C", "grupo": "Fuente C", "tema": "INEGI / ENOE", "folder": "fuente_c/01_enoe_microdatos", "archivo": "0_indice_tablas_enoe_2025_1t.csv", "tipo": "Microdatos INEGI", "desc": "Microdatos ENOE 2025 1T Hogares/Viviendas y 45 catálogos"},
+    {"num": "02-C", "grupo": "Fuente C", "tema": "SEGALMEX / DICONSA", "folder": "fuente_c/02_diconsa_segalmex", "archivo": "DICONSA_8_Listado_de_articulos_por_proveedor.csv", "tipo": "CSV Oficial DICONSA", "desc": "4,064 artículos canasta básica y proveedores Diconsa"},
+    {"num": "03-C", "grupo": "Fuente C", "tema": "Inspección / Sanidad", "folder": "fuente_c/03_imss_boletin", "archivo": "01_actividades-inspeccion-movilizacion_2dotrim2025.csv", "tipo": "CSV Inspección", "desc": "Inspección fitozoosanitaria y movilización agropecuaria"},
+    {"num": "04-C", "grupo": "Fuente C", "tema": "Movilidad / Va y Ven", "folder": "fuente_c/04_transporte_vayven", "archivo": "export.geojson", "tipo": "GeoJSON Rutas", "desc": "565 rutas y paraderos de transporte Va y Ven al Centro"},
+    {"num": "05-C", "grupo": "Fuente C", "tema": "Transparencia / Salud", "folder": "fuente_c/05_solicitud_salubridad", "archivo": "remuneraciones_trim02_2026.csv", "tipo": "CSV Sueldos PNT", "desc": "Tabulador de remuneraciones brutas y netas sector salud"},
+    {"num": "06-C", "grupo": "Fuente C", "tema": "Scraping Apps Delivery", "folder": "fuente_c/06_scraping_delivery", "archivo": "comparativa_precios_canasta_basica.csv", "tipo": "CSV Comparativa", "desc": "2,501 registros de sobreprecio delivery vs tienda física"},
+    {"num": "07-C", "grupo": "Fuente C", "tema": "Entrevistas Locatarios", "folder": "fuente_c/07_entrevistas_mercado", "archivo": "entrevistas_locatarios_mercado.csv", "tipo": "CSV Entrevistas", "desc": "Entrevistas estructuradas a locatarios de Lucas de Gálvez"},
+    {"num": "08-C", "grupo": "Fuente C", "tema": "OpenTopography / Radar", "folder": "fuente_c/08_opentopography", "archivo": "topografia_srtm_nasadem_merida_vs_montanas.csv", "tipo": "CSV Topográfico", "desc": "2,401 puntos de cota SRTM/NASADEM Mérida vs montañas"},
+    {"num": "09-C", "grupo": "Fuente C", "tema": "Waypoints AR Lucas Gálvez", "folder": "fuente_c/09_ar_waypoints", "archivo": "ruta_ar_lucas_galvez.json", "tipo": "JSON Navegación AR", "desc": "Ruta de guiado peatonal AR hacia pasillo económico"}
 ]
 
 def verificar_todo():
@@ -51,11 +62,15 @@ def verificar_todo():
         })
 
     df_res = pd.DataFrame(resumen)
-    print("=" * 125)
-    print("           ESTADO DE LOS 18 DATASETS DISPONIBLES (ORGANIZADOS EN FUENTE A Y FUENTE B)")
-    print("=" * 125)
+    print("=" * 135)
+    print("                     ESTADO DE LOS 27 DATASETS DEL PROYECTO (FUENTES A, B Y C)")
+    print("=" * 135)
     print(df_res.to_string(index=False))
-    print("=" * 125)
+    print("=" * 135)
+    
+    total = len(df_res)
+    listos = sum(df_res["Estatus"] == "Listo")
+    print(f"\nResumen: {listos} de {total} datasets listos y verificados en disco.")
 
 if __name__ == "__main__":
     verificar_todo()

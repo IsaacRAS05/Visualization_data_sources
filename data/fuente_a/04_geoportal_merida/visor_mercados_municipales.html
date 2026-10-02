@@ -495,32 +495,39 @@
 
     L.control.zoom({ position: 'topright' }).addTo(map);
 
-    // Capa 1: Modo Oscuro Limpio (Esri Dark Canvas - 100% Libre, CERO marcas de agua, SIN API Key)
-    const esriDark = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-      attribution: '&copy; Esri, HERE | Datos: Geoportal Ayuntamiento de Mérida',
-      maxZoom: 16
+    // Capa 1: Callejero a Todo Color (Esri World Street Map - 100% Libre, Sin API Key, Sin marcas de agua, Permite file://)
+    const esriStreet = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      attribution: '&copy; Esri, HERE, Garmin, USGS | Datos: Geoportal Ayuntamiento de Mérida',
+      maxZoom: 18
     });
 
-    // Capa 2: OpenStreetMap Estándar (100% Libre y Abierto, NUNCA requiere API Key)
-    const osmStandard = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors | Datos: Geoportal Ayuntamiento de Mérida',
-      maxZoom: 19
+    // Capa 2: Topográfico a Color (Esri World Topo Map - Relieve y áreas verdes detalladas)
+    const esriTopo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+      attribution: '&copy; Esri, HERE, FAO, USGS | Datos: Geoportal Ayuntamiento de Mérida',
+      maxZoom: 18
     });
 
-    // Capa 3: Satelital Esri World Imagery (Fotografía aérea de alta resolución)
+    // Capa 3: Satelital Aéreo de Alta Resolución (Esri World Imagery)
     const esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       attribution: '&copy; Esri World Imagery | Geoportal Mérida',
       maxZoom: 18
     });
 
-    // Añadir Esri Dark como capa base inicial limpia y sin marcas
-    esriDark.addTo(map);
+    // Capa 4: Modo Oscuro Opcional (Esri Dark Canvas)
+    const esriDark = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      attribution: '&copy; Esri, HERE | Datos: Geoportal Ayuntamiento de Mérida',
+      maxZoom: 16
+    });
+
+    // Añadir Callejero a Color como capa base inicial predeterminada
+    esriStreet.addTo(map);
 
     // Control de Capas Base
     const baseMaps = {
-      "🌙 Modo Oscuro (Sin Marcas)": esriDark,
-      "🗺️ Callejero Libre (OpenStreetMap)": osmStandard,
-      "🛰️ Satelital Aéreo (Esri)": esriSat
+      "🗺️ Callejero a Color (Esri Streets)": esriStreet,
+      "🏔️ Topográfico a Color (Esri Topo)": esriTopo,
+      "🛰️ Satelital Aéreo (Esri)": esriSat,
+      "🌙 Modo Oscuro Minimalista": esriDark
     };
 
     L.control.layers(baseMaps, null, { position: 'topright' }).addTo(map);
