@@ -1,0 +1,6 @@
+CVE,DESCRIP
+0,No diponible
+1,Localidades mayores de 100 000 habitantes
+2,Localidades de 15 000 a 99 999 habitantes
+3,Localidades de 2 500 a 14 999 habitantes  
+4,Localidades menores de 2 500 habitantes  

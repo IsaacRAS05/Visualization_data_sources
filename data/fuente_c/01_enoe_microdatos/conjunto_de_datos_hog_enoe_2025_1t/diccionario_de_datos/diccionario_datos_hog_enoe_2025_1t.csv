@@ -1,0 +1,38 @@
+NOMBRE_CAMPO,LONGITUD,TIPO,NEMÓNICO,CATÁLOGO,RANGO_CLAVES                                                              
+Número de la localidad,4,C,loc,loc,0001-9998
+Número de municipio según entidad,3,C,mun,mun,001-575
+Estrato nacional y estatal,2,C,est,,"Primer dígito 1-4, Segundo dígito 0-4"
+Estrato de diseño trimestral,4,C,est_d_tri,,0001-9999
+Estrato de diseño mensual,4,C,est_d_men,,0001-9999
+Número de ageb del marco nacional,5,C,ageb,,00001-99999
+Tamaño de localidad trimestral,1,C,t_loc_tri,t_loc_tri,[1-4]
+Tamaño de localidad mensual,1,C,t_loc_men,t_loc_men,[0-4]
+Ciudad autorrepresentada,2,C,cd_a,cd_a,"01-52, 81-86"
+Entidad,2,C,ent,ent,[01-32]
+Control,5,C,con,,00001-99999
+Unidad primaria de muestreo,7,C,upm,,0000001-9999999
+Distribución semanal,3,C,d_sem,,"Primer dígito 1-5, Segundo y tercer dígito 01-13"
+Número progresivo de la vivienda,4,C,n_pro_viv,,0001-9999
+Vivienda seleccionada,2,C,v_sel,v_sel,[01-99]
+Número de hogar,1,C,n_hog,n_hog,[1-9]
+Hogar mudado,1,C,h_mud,h_mud,0-4
+Numero de entrevista o visita,2,C,n_ent,n_ent,[1-5]
+Periodo,3,C,per,,"Primer dígito 1-4, Segundo y tercer dígito 00-99"
+Resultado preliminar de la entrevista,2,C,r_pre,r_pre,00-15
+Día del resultado preliminar,2,C,p_dia,p_dia,[01-31]
+Mes del resultado preliminar,2,C,p_mes,p_mes,[01-12]
+Año del resultado preliminar,2,C,p_anio,,[05-99]
+Resultado definitivo de la entrevista,2,C,r_def,r_def,00-15
+Día del resultado definitivo,2,C,d_dia,d_dia,[01-31]
+Mes del resultado definitivo,2,C,d_mes,d_mes,[01-12]
+Año del resultado definitivo,2,C,d_anio,,[05-99]
+Entrevista observada,1,C,e_obs,e_obs,[1-2]
+Pregunta 4 ¿En este hogar se contrata a trabajadores domésticos?,1,C,p4_1,p4_1,[1-4]
+Pregunta 4 ¿Cuántos?,2,C,p4_2,,[01-99]
+Renglón del informante,2,C,inf,inf,"01-30,99"
+Urbano/Rural,1,N,ur,ur,[1-2]
+Tipo de entrevista,1,C,tipo,tipo,[1-2]
+Mes calendario,2,C,mes_cal,mes_cal,"01-12, 96-99"
+Tipo de levantamiento de la entrevista,1,C,tipolev,tipolev,[1-2]
+Ponderador trimestral,6,N,fac_tri,,1-999999
+Ponderador mensual,6,N,fac_men,,1-999999
