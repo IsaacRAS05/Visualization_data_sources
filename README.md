@@ -124,14 +124,19 @@ El proyecto incluye aplicaciones web autónomas e interactivas que puedes abrir 
   * 📋 Contamos con 25 encuestas de hogares y 5 tienditas auditadas en piloto. Los instrumentos y cuestionarios están listos para ampliar la muestra en colonias de Mérida.
 * **Scraping de Supermercados y Farmacias (06-A y 06-B):**
   * 💻 Scripts funcionales con pausas éticas (2-5 segundos) y extractor conectado a los **28,288 precios reales de inspectores PROFECO en Mérida** ([`precios_canasta_supermercados_reales.csv`](data/fuente_a/06_scraping_autoservicios/precios_canasta_supermercados_reales.csv)).
-* **⏸️ Pausa Técnica en Análisis Cruzado (En Espera de la Persona B):**
-  * **¿Por qué estamos pausados?:** Para respetar la asignación del compañero(a) encargado(a) de la **Fuente B**, no pisar su trabajo y evitar conflictos de fusión en Git (*merge conflicts*). Los cruces analíticos finales se mantienen en espera para que se alimenten con los archivos oficiales definitivos que valide la Persona B.
-  * **¿Qué falta de la Fuente B?:**
-    1. Confirmación de las series de precios mayoristas en la Central de Abasto (**SNIIM 02-B**).
-    2. Validación del catálogo de tianguis autorizados en vía pública (**Geoportal 04-B**).
-    3. Revisión del índice de marginación urbana por colonias (**CONAPO 03-B**).
-  * **¿Qué se desbloqueará en cuanto la Persona B entregue?:**
-    - El cálculo del margen de intermediación: precio de mayoreo en Central de Abasto vs. precios de venta en supermercados de Mérida.
-    - El mapa unificado de abasto formal vs. ambulante (Mercados municipales permanentes + Tianguis sobre ruedas).
-    - El mapeo de desiertos alimentarios cruzando los 7,520 comercios de DENUE con la marginación de CONAPO.
-    *(Ver detalles en [`PROTOCOLO_INTEGRACION_PERSONA_B.md`](PROTOCOLO_INTEGRACION_PERSONA_B.md)).*
+* **🟢 Integración Completa de la Fuente B (100% Lista):**
+  * **Estado:** Los 9 datasets de la **Fuente B** (a cargo de **Jorge Ramiro Chay Koyoc**) están **100% integrados, estructurados y verificados** en el repositorio.
+  * **Datasets disponibles y listos:**
+    1. Precios de mayoreo diarios en la Central de Abasto de Mérida (**SNIIM 02-B**).
+    2. Red de tianguis sobre ruedas autorizados en colonias de Mérida (**Geoportal 04-B**).
+    3. Grados de marginación urbana por colonia y AGEB en Mérida (**CONAPO / SIEGY 03-B**).
+    4. Ingresos, personal y salarios en comercio de alimentos (**INEGI SAIC 01-B**).
+    5. Solicitud formal de pesajes y toneladas a Central de Abasto (**PNT 05-B**).
+    6. Canasta complementaria en Farmacias Guadalajara y OXXO (**Web Scraping 06-B**).
+    7. Auditoría de góndola en 5 tienditas de la esquina de Mérida (**Bitácora Campo 07-B**).
+    8. Malla de elevación continua de Mérida para análisis de drenaje (**INEGI CEM 3.0 08-B**).
+    9. Catálogo de assets 3D glTF/GLB para proyectar en WebXR / ARCore (**Modelos 3D 09-B**).
+  * **Cruces analíticos desbloqueados:**
+    - Margen de intermediación: Precios mayoreo SNIIM vs. precios de venta al consumidor PROFECO en supermercados de Mérida.
+    - Red integral de abasto: Mercados municipales permanentes combinados con tianguis rodantes.
+    - Desiertos alimentarios: Cruce de los 7,520 comercios de DENUE con los polígonos de marginación CONAPO.
