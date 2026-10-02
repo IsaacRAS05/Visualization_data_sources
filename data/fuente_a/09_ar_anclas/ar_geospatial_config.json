@@ -1,0 +1,12 @@
+{
+  "project_name": "CanastaBasicaMerida_AR",
+  "ar_sdk_target": "Google ARCore Geospatial SDK / Unity 2023.3+",
+  "vps_provider": "Google Visual Positioning System",
+  "vertical_accuracy_threshold_m": 0.5,
+  "horizontal_accuracy_threshold_m": 0.8,
+  "heading_accuracy_threshold_deg": 5.0,
+  "anchors_source_file": "spatial_anchors_merida.geojson",
+  "render_distance_max_meters": 150,
+  "ui_billboard_mode": "CameraFacingYOnly",
+  "data_refresh_interval_hours": 24
+}

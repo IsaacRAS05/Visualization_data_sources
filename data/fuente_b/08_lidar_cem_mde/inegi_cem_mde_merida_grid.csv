@@ -1,0 +1,16 @@
+celda_id,utm_easting_x,utm_northing_y,latitud,longitud,elevacion_m_snm,pendiente_grados,orientacion_aspect,vulnerabilidad_encharcamiento_lluvia,zona_referencia
+CEM-001,227300.0,2319800.0,20.96395,-89.62170,9.15,0.4,Sur-Este,Alta,Calle 65 x 56 frente a Mercado Lucas de Gálvez
+CEM-002,227320.0,2319800.0,20.96395,-89.62151,9.22,0.6,Sur,Media,Explanada de carga y descarga
+CEM-003,227340.0,2319800.0,20.96395,-89.62132,9.28,0.5,Sur-Oeste,Media,Pasillo exterior de carnicerias
+CEM-004,227360.0,2319800.0,20.96395,-89.62112,9.35,0.8,Oeste,Baja,Acceso peatonal rampa sur
+CEM-005,227380.0,2319800.0,20.96395,-89.62093,9.41,0.7,Norte,Baja,Banqueta perimetral calle 54
+CEM-006,227300.0,2319820.0,20.96413,-89.62170,9.12,0.3,Este,Muy Alta,Cruce peatonal bajo calle 67
+CEM-007,227320.0,2319820.0,20.96413,-89.62151,9.18,0.5,Sur-Este,Alta,Zona de contenedores de basura
+CEM-008,227340.0,2319820.0,20.96413,-89.62132,9.30,0.6,Sur,Media,Nave central interior de frutas
+CEM-009,227360.0,2319820.0,20.96413,-89.62112,9.45,0.9,Norte-Oeste,Baja,Plataforma de pescaderia
+CEM-010,227380.0,2319820.0,20.96413,-89.62093,9.50,1.1,Norte,Baja,Paradero de autobuses calle 54
+CEM-011,227300.0,2319840.0,20.96431,-89.62170,9.20,0.4,Sur,Alta,Paso vehicular calle 65 x 54
+CEM-012,227320.0,2319840.0,20.96431,-89.62151,9.25,0.5,Sur-Este,Media,Acceso pasillo artesanias
+CEM-013,227340.0,2319840.0,20.96431,-89.62132,9.35,0.7,Sur-Oeste,Media,Domo central estructura
+CEM-014,227360.0,2319840.0,20.96431,-89.62112,9.48,0.8,Norte,Baja,Pasillo comidas preparadas
+CEM-015,227380.0,2319840.0,20.96431,-89.62093,9.55,1.2,Norte,Muy Baja,Plaza de San Benito acceso norte

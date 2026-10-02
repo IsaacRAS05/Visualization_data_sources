@@ -1,0 +1,26 @@
+folio_auditoria,fecha_visita,encuestador_equipo,zona_merida,colonia,nombre_tiendita,direccion_referencia,producto_auditado,marca_presentacion,precio_observado_mxn,metodo_pago_aceptado,observaciones_campo
+AUD-01,2026-09-26 10:15,Equipo UPY,Centro,Centro Historico,Abarrotes El Milagro,Calle 65 x 50,Tortilla de maiz,Tortilleria local 1 kg caliente,26.00,Solo Efectivo,Despacho en papel de estraza
+AUD-01,2026-09-26 10:15,Equipo UPY,Centro,Centro Historico,Abarrotes El Milagro,Calle 65 x 50,Huevo blanco,A granel suelto por kilo (16 pzas),46.00,Solo Efectivo,Exhibido en rejas de carton
+AUD-01,2026-09-26 10:15,Equipo UPY,Centro,Centro Historico,Abarrotes El Milagro,Calle 65 x 50,Leche entera,Lala pasteurizada 1 L bolsa,27.50,Solo Efectivo,Refrigerada
+AUD-01,2026-09-26 10:15,Equipo UPY,Centro,Centro Historico,Abarrotes El Milagro,Calle 65 x 50,Frijol negro,Jamapa a granel por kilo,32.00,Solo Efectivo,Costal abierto para pesar
+AUD-01,2026-09-26 10:15,Equipo UPY,Centro,Centro Historico,Abarrotes El Milagro,Calle 65 x 50,Pan blanco,Frances / Barra de pan yucateco pieza,5.00,Solo Efectivo,Fresco del dia
+AUD-02,2026-09-26 11:30,Equipo UPY,Poniente,Ciudad Caucel,Miscelanea La Bendicion,Calle 59 x 80 Caucel,Tortilla de maiz,Tortilleria local 1 kg,27.00,Efectivo y Transferencia,Tienen letrero de cobro CoDi
+AUD-02,2026-09-26 11:30,Equipo UPY,Poniente,Ciudad Caucel,Miscelanea La Bendicion,Calle 59 x 80 Caucel,Huevo blanco,San Juan reja 30 pzas,84.00,Efectivo y Transferencia,Venden por cono y por pieza
+AUD-02,2026-09-26 11:30,Equipo UPY,Poniente,Ciudad Caucel,Miscelanea La Bendicion,Calle 59 x 80 Caucel,Leche entera,Alpura clasica tetra 1 L,30.00,Efectivo y Transferencia,En anaquel
+AUD-02,2026-09-26 11:30,Equipo UPY,Poniente,Ciudad Caucel,Miscelanea La Bendicion,Calle 59 x 80 Caucel,Frijol negro,La Costeña bolsa 900 g,36.00,Efectivo y Transferencia,Empaquetado comercial
+AUD-02,2026-09-26 11:30,Equipo UPY,Poniente,Ciudad Caucel,Miscelanea La Bendicion,Calle 59 x 80 Caucel,Pan de caja,Bimbo blanco grande 680 g,49.00,Efectivo y Transferencia,Proveedor surte 2 veces por semana
+AUD-03,2026-09-26 12:45,Equipo UPY,Sur,San Jose Tecoh,Tiendita Don Willy,Calle 131 x 48,Tortilla de maiz,1 kg de maiz nixtamalizado,25.00,Solo Efectivo,Molino cercano
+AUD-03,2026-09-26 12:45,Equipo UPY,Sur,San Jose Tecoh,Tiendita Don Willy,Calle 131 x 48,Huevo blanco,A granel 1 kg (15-16 pzas),45.00,Solo Efectivo,Cliente compra medio kilo comunmente
+AUD-03,2026-09-26 12:45,Equipo UPY,Sur,San Jose Tecoh,Tiendita Don Willy,Calle 131 x 48,Leche entera,Nutri Leche producto lacteo 1 L,22.00,Solo Efectivo,Mayor venta que leche pura por costo
+AUD-03,2026-09-26 12:45,Equipo UPY,Sur,San Jose Tecoh,Tiendita Don Willy,Calle 131 x 48,Frijol negro,Negro Veracruz a granel 1 kg,30.00,Solo Efectivo,Venden cuartos de kilo
+AUD-03,2026-09-26 12:45,Equipo UPY,Sur,San Jose Tecoh,Tiendita Don Willy,Calle 131 x 48,Pan blanco,Barra francesa pieza,4.50,Solo Efectivo,Elaboracion artesanal
+AUD-04,2026-09-26 16:20,Equipo UPY,Oriente,Pacabtun,Mini Super Los Pinos,Calle 50 x 39 Pacabtun,Tortilla de maiz,Tortilleria La Paloma 1 kg,26.00,Efectivo y Tarjeta,Terminal bancaria Clip con comision
+AUD-04,2026-09-26 16:20,Equipo UPY,Oriente,Pacabtun,Mini Super Los Pinos,Calle 50 x 39 Pacabtun,Huevo blanco,Kaki bolsa 1 kg,47.00,Efectivo y Tarjeta,Producto de granja yucateca
+AUD-04,2026-09-26 16:20,Equipo UPY,Oriente,Pacabtun,Mini Super Los Pinos,Calle 50 x 39 Pacabtun,Leche entera,Lala entera 1 L,29.00,Efectivo y Tarjeta,Refrigerada
+AUD-04,2026-09-26 16:20,Equipo UPY,Oriente,Pacabtun,Mini Super Los Pinos,Calle 50 x 39 Pacabtun,Frijol negro,Verde Valle 900 g,39.00,Efectivo y Tarjeta,En bolsa sellada
+AUD-04,2026-09-26 16:20,Equipo UPY,Oriente,Pacabtun,Mini Super Los Pinos,Calle 50 x 39 Pacabtun,Pan blanco,Pan dulce yucateco pieza,6.00,Efectivo y Tarjeta,Horneado local
+AUD-05,2026-09-26 17:40,Equipo UPY,Norte,Francisco de Montejo,Abarrotes Montejo Express,Calle 50 x 47,Tortilla de maiz,Tortilleria San Antonio 1 kg,28.00,Efectivo, Tarjeta y Valeros,Terminal bancaria fija
+AUD-05,2026-09-26 17:40,Equipo UPY,Norte,Francisco de Montejo,Abarrotes Montejo Express,Calle 50 x 47,Huevo blanco,San Juan caja 18 pzas,54.00,Efectivo, Tarjeta y Valeros,Empacado de marca
+AUD-05,2026-09-26 17:40,Equipo UPY,Norte,Francisco de Montejo,Abarrotes Montejo Express,Calle 50 x 47,Leche entera,Santa Clara entera 1 L,31.00,Efectivo, Tarjeta y Valeros,Tetra Pak
+AUD-05,2026-09-26 17:40,Equipo UPY,Norte,Francisco de Montejo,Abarrotes Montejo Express,Calle 50 x 47,Frijol negro,Verde Valle negro 900 g,40.00,Efectivo, Tarjeta y Valeros,Marca premium
+AUD-05,2026-09-26 17:40,Equipo UPY,Norte,Francisco de Montejo,Abarrotes Montejo Express,Calle 50 x 47,Pan de caja,Bimbo integral 680 g,52.00,Efectivo, Tarjeta y Valeros,En anaquel

@@ -1,0 +1,26 @@
+id_encuesta,fecha_hora,zona_merida,colonia,integrantes_hogar,aportantes_ingreso,ingreso_mensual_hogar_mxn,gasto_semanal_alimentos_mxn,lugar_compra_principal,razon_eleccion,producto_mayor_impacto_alza,percepcion_salario_minimo,metodo_pago_habitual
+ENC-001,2026-09-22 09:15,Centro,Centro,4,2,7500-15000,1850,Mercado municipal,Precios mas bajos,Huevo,Insuficiente,Efectivo
+ENC-002,2026-09-22 09:40,Centro,San Cristobal,3,1,7500-15000,1400,Mercado municipal,Precios mas bajos,Carne de res o cerdo,Totalmente insuficiente,Efectivo
+ENC-003,2026-09-22 10:10,Poniente,Ciudad Caucel,4,2,15001-25000,2200,Supermercado,Cercania y transporte,Frutas y verduras frescas,Apenas suficiente,Tarjeta de debito
+ENC-004,2026-09-22 10:35,Poniente,Ciudad Caucel,5,2,15001-25000,2600,Supermercado,Aceptacion de vales,Huevo,Insuficiente,Tarjeta de vales de despensa
+ENC-005,2026-09-22 11:00,Poniente,Residencial Chenku,3,1,7500-15000,1650,Tienda de abarrotes local,Cercania y transporte,Tortilla de maiz,Insuficiente,Efectivo
+ENC-006,2026-09-22 11:30,Sur,San Jose Tecoh,5,2,Menor a 7500,1900,Tienda de abarrotes local,Precios mas bajos,Huevo,Totalmente insuficiente,Efectivo
+ENC-007,2026-09-22 12:00,Sur,Cinco Colonias,4,1,7500-15000,1700,Mercado municipal,Precios mas bajos,Pollo,Totalmente insuficiente,Efectivo
+ENC-008,2026-09-22 12:40,Sur,Santa Rosa,3,1,7500-15000,1350,Tianguis sobre ruedas,Precios mas bajos,Frutas y verduras frescas,Insuficiente,Efectivo
+ENC-009,2026-09-23 09:20,Norte,Francisco de Montejo,3,2,25001-40000,2400,Supermercado,Calidad y frescura,Carne de res o cerdo,Apenas suficiente,Tarjeta de credito
+ENC-010,2026-09-23 10:00,Norte,Altabrisa,2,2,Mayor a 40000,3100,Supermercado,Calidad y frescura,Frutas y verduras frescas,Suficiente,Tarjeta de credito
+ENC-011,2026-09-23 10:45,Norte,Chuburna,4,2,15001-25000,2100,Supermercado,Cercania y transporte,Pollo,Apenas suficiente,Tarjeta de debito
+ENC-012,2026-09-23 11:30,Oriente,Pacabtun,4,2,7500-15000,1800,Mercado municipal,Precios mas bajos,Tortilla de maiz,Insuficiente,Efectivo
+ENC-013,2026-09-23 12:15,Oriente,Los Heroes,3,2,15001-25000,2050,Supermercado,Cercania y transporte,Huevo,Apenas suficiente,Tarjeta de debito
+ENC-014,2026-09-23 13:00,Oriente,Chichen Itza,5,3,15001-25000,2500,Tienda de abarrotes local,Precios mas bajos,Frijol y arroz,Insuficiente,Efectivo
+ENC-015,2026-09-24 09:30,Centro,La Mejorada,2,1,7500-15000,1200,Mercado municipal,Cercania y transporte,Huevo,Insuficiente,Efectivo
+ENC-016,2026-09-24 10:15,Poniente,Pensiones,3,2,15001-25000,1950,Supermercado,Calidad y frescura,Carne de res o cerdo,Apenas suficiente,Tarjeta de debito
+ENC-017,2026-09-24 11:00,Sur,Dolores Otero,4,2,7500-15000,1750,Mercado municipal,Precios mas bajos,Pollo,Totalmente insuficiente,Efectivo
+ENC-018,2026-09-24 11:45,Norte,Campestre,2,2,Mayor a 40000,2900,Supermercado,Calidad y frescura,Frutas y verduras frescas,Suficiente,Tarjeta de credito
+ENC-019,2026-09-24 12:30,Oriente,Vergel,4,2,7500-15000,1900,Tienda de abarrotes local,Cercania y transporte,Huevo,Insuficiente,Efectivo
+ENC-020,2026-09-24 13:15,Poniente,Las Americas,3,2,25001-40000,2500,Supermercado,Cercania y transporte,Carne de res o cerdo,Apenas suficiente,Tarjeta de credito
+ENC-021,2026-09-25 09:10,Centro,San Juan,3,1,7500-15000,1500,Mercado municipal,Precios mas bajos,Pollo,Totalmente insuficiente,Efectivo
+ENC-022,2026-09-25 09:50,Sur,Meliton Salazar,5,2,7500-15000,2100,Tianguis sobre ruedas,Precios mas bajos,Huevo,Totalmente insuficiente,Efectivo
+ENC-023,2026-09-25 10:30,Poniente,Bojorquez,4,1,7500-15000,1650,Tienda de abarrotes local,Cercania y transporte,Tortilla de maiz,Insuficiente,Efectivo
+ENC-024,2026-09-25 11:15,Norte,Montes de Ame,2,2,Mayor a 40000,3200,Supermercado,Calidad y frescura,Carne de res o cerdo,Suficiente,Tarjeta de credito
+ENC-025,2026-09-25 12:00,Oriente,Esperanza,4,2,15001-25000,2000,Mercado municipal,Precios mas bajos,Frutas y verduras frescas,Insuficiente,Efectivo

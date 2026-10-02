@@ -1,0 +1,58 @@
+{
+  "repositorio_ar": "Modelos 3D Optimizados para Canasta Básica y Semáforo de Precios",
+  "estandar_formato": "glTF 2.0 Binary (.glb)",
+  "motor_render": "ARCore Geospatial Creator / Three.js / WebXR",
+  "sistema_unidades": "Metros (m)",
+  "optimizacion_movil": "Low-Poly (menos de 15,000 polígonos por asset)",
+  "licencia_assets": "Creative Commons Attribution (CC-BY 4.0)",
+  "modelos_disponibles": [
+    {
+      "id_modelo": "MOD-3D-01",
+      "nombre": "Canasta Básica de Frutas y Abarrotes",
+      "archivo": "models/canasta_basica_lowpoly.glb",
+      "categoria": "Alimentos y Víveres",
+      "origen_repositorio": "Poly Pizza / Kenney.nl",
+      "url_fuente": "https://poly.pizza/m/canasta-alimentos",
+      "poligonos": 4250,
+      "texturas": "PBR 1024x1024 diffuse + roughness",
+      "dimensiones_bounding_box_m": {"ancho_x": 0.50, "alto_y": 0.35, "profundidad_z": 0.40},
+      "posicionamiento_ar": "Sobre banqueta frente al comercio (Y=0.0m respecto al ancla)"
+    },
+    {
+      "id_modelo": "MOD-3D-02",
+      "nombre": "Reja de Huevo de Granja con Letrero de Precio",
+      "archivo": "models/cono_huevo_precio.glb",
+      "categoria": "Pecuarios y Granja",
+      "origen_repositorio": "Sketchfab CC-BY (Open Asset)",
+      "url_fuente": "https://sketchfab.com/3d-models/egg-carton-crate",
+      "poligonos": 2890,
+      "texturas": "PBR 512x512",
+      "dimensiones_bounding_box_m": {"ancho_x": 0.30, "alto_y": 0.15, "profundidad_z": 0.30},
+      "posicionamiento_ar": "Flotante sobre vitrina o mostrador (Y=1.20m)"
+    },
+    {
+      "id_modelo": "MOD-3D-03",
+      "nombre": "Cartón de Leche y Abarrotes Esenciales",
+      "archivo": "models/leche_abarrotes_pack.glb",
+      "categoria": "Lácteos y Despensa",
+      "origen_repositorio": "Poly Pizza Open Assets",
+      "url_fuente": "https://poly.pizza/m/milk-carton",
+      "poligonos": 1820,
+      "texturas": "Unlit / Mobile Friendly",
+      "dimensiones_bounding_box_m": {"ancho_x": 0.20, "alto_y": 0.28, "profundidad_z": 0.18},
+      "posicionamiento_ar": "Icono interactivo seleccionable con click táctil"
+    },
+    {
+      "id_modelo": "MOD-3D-04",
+      "nombre": "Tarjeta Holográfica UI Semáforo de Precios",
+      "archivo": "models/card_mercado_precios.glb",
+      "categoria": "Interfaz de Usuario 3D (HUD)",
+      "origen_repositorio": "Generado propio (Blender + Unity UI Toolkit)",
+      "url_fuente": "victorrr/data/09_ar_geospatial/models/",
+      "poligonos": 650,
+      "texturas": "Canvas dinámico UI con texto editable de precio semanal",
+      "dimensiones_bounding_box_m": {"ancho_x": 1.20, "alto_y": 0.80, "profundidad_z": 0.05},
+      "posicionamiento_ar": "Anclada a la fachada a 2.20 metros de altura (Billboard Facing Camera)"
+    }
+  ]
+}

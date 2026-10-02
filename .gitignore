@@ -1,0 +1,23 @@
+# Python cache and temporary files
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Large raw archive files (keep filtered clean CSVs in git)
+data/fuente_a/01_inegi_denue/denue_yucatan_oficial/
+*.zip
+*.tar
+*.gz
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini

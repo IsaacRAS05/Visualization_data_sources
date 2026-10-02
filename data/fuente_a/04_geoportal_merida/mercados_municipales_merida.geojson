@@ -1,0 +1,164 @@
+{
+  "type": "FeatureCollection",
+  "name": "mercados_municipales_merida",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id_mercado": 1,
+        "nombre": "Mercado Lucas de Gálvez",
+        "tipo": "Mercado Central Mayorista y Minorista",
+        "colonia": "Centro",
+        "direccion": "Calle 65 x 54 y 56",
+        "codigo_postal": 97000,
+        "locales_activos": 1250,
+        "giro_principal": "Carnes, frutas, verduras, abarrotes, pescados y comidas",
+        "nivel_precios": "Bajo (Precios de mayoreo/menudeo)",
+        "afluencia_diaria_estimada": 35000
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-89.621210, 20.964115]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id_mercado": 2,
+        "nombre": "Mercado San Benito",
+        "tipo": "Mercado Central Concentrador",
+        "colonia": "Centro",
+        "direccion": "Calle 54 x 67 y 69",
+        "codigo_postal": 97000,
+        "locales_activos": 890,
+        "giro_principal": "Granos y semillas, carnes, verduras y hierbas medicinales",
+        "nivel_precios": "Muy Bajo",
+        "afluencia_diaria_estimada": 25000
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-89.622580, 20.961910]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id_mercado": 3,
+        "nombre": "Mercado Santos Degollado (Santiago)",
+        "tipo": "Mercado de Barrio Tradicional",
+        "colonia": "Barrio de Santiago",
+        "direccion": "Calle 59 x 70 y 72",
+        "codigo_postal": 97000,
+        "locales_activos": 115,
+        "giro_principal": "Comida preparada, frutas de temporada, carne fresca",
+        "nivel_precios": "Medio",
+        "afluencia_diaria_estimada": 4500
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-89.628950, 20.970140]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id_mercado": 4,
+        "nombre": "Mercado de Santa Ana",
+        "tipo": "Mercado Gastronómico y Vecinal",
+        "colonia": "Barrio de Santa Ana",
+        "direccion": "Calle 60 x 47",
+        "codigo_postal": 97000,
+        "locales_activos": 68,
+        "giro_principal": "Alimentos preparados, juguerías, frutas y verduras",
+        "nivel_precios": "Medio-Alto",
+        "afluencia_diaria_estimada": 3200
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-89.620850, 20.975410]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id_mercado": 5,
+        "nombre": "Mercado de San Sebastián",
+        "tipo": "Mercado de Barrio Tradicional",
+        "colonia": "Barrio de San Sebastián",
+        "direccion": "Calle 70 x 75",
+        "codigo_postal": 97000,
+        "locales_activos": 85,
+        "giro_principal": "Abarrotes, tortillería, carnes rojas y verduras",
+        "nivel_precios": "Bajo",
+        "afluencia_diaria_estimada": 3800
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-89.630410, 20.957820]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id_mercado": 6,
+        "nombre": "Mercado de Chembech",
+        "tipo": "Mercado Periférico Oriente",
+        "colonia": "Esperanza / Chembech",
+        "direccion": "Calle 42 x 57",
+        "codigo_postal": 97000,
+        "locales_activos": 92,
+        "giro_principal": "Carnicería de cerdo, pollo fresco, abarrotes y condimentos",
+        "nivel_precios": "Bajo",
+        "afluencia_diaria_estimada": 3100
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-89.608420, 20.969850]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id_mercado": 7,
+        "nombre": "Mercado de Chuburná de Hidalgo",
+        "tipo": "Mercado de Barrio Norte",
+        "colonia": "Chuburná de Hidalgo",
+        "direccion": "Calle 20 x 21",
+        "codigo_postal": 97205,
+        "locales_activos": 74,
+        "giro_principal": "Verduras, tortillas, carne de res y cerdo, antojitos",
+        "nivel_precios": "Medio",
+        "afluencia_diaria_estimada": 2800
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-89.642100, 21.011240]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id_mercado": 8,
+        "nombre": "Mercado de Chenkú",
+        "tipo": "Mercado de Barrio Poniente",
+        "colonia": "Residencial Chenkú",
+        "direccion": "Calle 38 x 21 y 23",
+        "codigo_postal": 97219,
+        "locales_activos": 45,
+        "giro_principal": "Abarrotes, frutas frescas, recaudería y carnicería",
+        "nivel_precios": "Medio-Bajo",
+        "afluencia_diaria_estimada": 1900
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-89.658720, 21.002840]
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+cve_ent,cve_mun,municipio,zona_urbana,colonia_fraccionamiento,poblacion_total,grado_marginacion_urbana,indice_marginacion_urbana,pct_poblacion_sin_derechohabiencia,pct_ocupados_ingreso_hasta_2sm,pct_viviendas_sin_drenaje,pct_viviendas_piso_tierra,pct_viviendas_hacinamiento
+31,050,Merida,Norte,Altabrisa,5420,Muy bajo,-1.842,12.5,14.2,0.1,0.0,2.1
+31,050,Merida,Norte,Montebello,4180,Muy bajo,-1.795,11.8,15.1,0.1,0.0,1.9
+31,050,Merida,Norte,Francisco de Montejo,32150,Bajo,-1.120,18.4,28.5,0.4,0.1,4.5
+31,050,Merida,Poniente,Residencial Pensiones,18900,Bajo,-1.050,19.2,31.2,0.5,0.1,5.2
+31,050,Merida,Poniente,Ciudad Caucel,85400,Medio,-0.410,28.5,46.8,1.2,0.4,9.8
+31,050,Merida,Centro,Centro Historico,24500,Medio,-0.320,29.8,44.5,2.1,0.5,8.9
+31,050,Merida,Oriente,Pacabtun,16800,Medio,-0.280,31.2,49.1,1.8,0.6,10.2
+31,050,Merida,Oriente,Vergel,21400,Medio,-0.210,33.5,52.4,2.0,0.7,11.5
+31,050,Merida,Sur,Santa Rosa,14200,Alto,0.620,41.2,64.8,4.5,1.8,17.4
+31,050,Merida,Sur,Cinco Colonias,19800,Alto,0.780,44.8,68.2,5.2,2.1,19.8
+31,050,Merida,Sur,San Jose Tecoh,28500,Muy alto,1.240,49.5,74.5,7.8,3.9,24.6
+31,050,Merida,Sur,Emiliano Zapata Sur,22100,Muy alto,1.380,52.1,78.2,9.4,4.8,28.2

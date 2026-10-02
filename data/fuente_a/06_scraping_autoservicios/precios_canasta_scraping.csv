@@ -1,0 +1,19 @@
+﻿fecha_scraping,fuente_tienda,ciudad,categoria,producto_nombre,presentacion,precio_regular_mxn,precio_oferta_mxn,descuento_aplicado,en_stock,metodo_extraccion
+2026-09-28 18:02:59,Súper Akí Mérida,Mérida,Huevos,Huevo Blanco Fresco,Paquete 18 piezas,48.71,48.71,NO,Disponible,HTTP Request + DOM Parser
+2026-09-28 18:02:59,Súper Akí Mérida,Mérida,Granos,Frijol Negro Jamapa,Bolsa 900 g,36.52,36.52,NO,Disponible,HTTP Request + DOM Parser
+2026-09-28 18:02:59,Súper Akí Mérida,Mérida,Granos,Arroz Blanco Super Extra,Bolsa 900 g,23.96,23.96,NO,Disponible,HTTP Request + DOM Parser
+2026-09-28 18:02:59,Súper Akí Mérida,Mérida,Aceites,Aceite Vegetal Comestible 1-2-3,Botella 900 ml,41.61,37.45,SI,Disponible,HTTP Request + DOM Parser
+2026-09-28 18:02:59,Súper Akí Mérida,Mérida,Lacteos,Leche Entera Pasteurizada Lala,Tetra Brik 1 L,29.29,26.36,SI,Disponible,HTTP Request + DOM Parser
+2026-09-28 18:02:59,Súper Akí Mérida,Mérida,Tortillas y Pan,Pan Blanco de Caja Bimbo Grande,Bolsa 680 g,48.08,48.08,NO,Disponible,HTTP Request + DOM Parser
+2026-09-28 18:02:59,Súper Akí Mérida,Mérida,Enlatados,Atún Aleta Amarilla en Agua Dolores,Lata 140 g,20.46,20.46,NO,Disponible,HTTP Request + DOM Parser
+2026-09-28 18:02:59,Súper Akí Mérida,Mérida,Endulzantes,Azúcar Estándar Morena,Bolsa 1 kg,31.13,31.13,NO,Disponible,HTTP Request + DOM Parser
+2026-09-28 18:02:59,Chedraui Itzaes Mérida,Mérida,Huevos,Huevo Blanco San Juan,Paquete 18 piezas,52.3,47.07,SI,Disponible,HTTP Request + DOM Parser
+2026-09-28 18:02:59,Chedraui Itzaes Mérida,Mérida,Granos,Frijol Negro Chedraui,Bolsa 900 g,33.66,30.29,SI,Disponible,HTTP Request + DOM Parser
+2026-09-28 18:02:59,Chedraui Itzaes Mérida,Mérida,Granos,Arroz Pulido Verde Valle,Bolsa 1 kg,30.18,27.16,SI,Disponible,HTTP Request + DOM Parser
+2026-09-28 18:02:59,Chedraui Itzaes Mérida,Mérida,Aceites,Aceite Puro de Soya Nutrioli,Botella 850 ml,44.84,44.84,NO,Disponible,HTTP Request + DOM Parser
+2026-09-28 18:02:59,Chedraui Itzaes Mérida,Mérida,Lacteos,Leche Entera Alpura Clásica,Tetra Brik 1 L,29.5,29.5,NO,Disponible,HTTP Request + DOM Parser
+2026-09-28 18:02:59,Chedraui Itzaes Mérida,Mérida,Carnes,Pollo Entero Fresco,Por kilogramo,48.8,48.8,NO,Disponible,HTTP Request + DOM Parser
+2026-09-28 18:02:59,Chedraui Itzaes Mérida,Mérida,Carnes,Chuleta de Cerdo Fresca,Por kilogramo,111.92,111.92,NO,Disponible,HTTP Request + DOM Parser
+2026-09-28 18:02:59,Dunosusa Mérida,Mérida,Abarrotes,Pasta para Sopa Fideo La Moderna,Bolsa 200 g,11.77,11.77,NO,Disponible,HTTP Request + DOM Parser
+2026-09-28 18:02:59,Dunosusa Mérida,Mérida,Abarrotes,Puré de Tomate Condimentado Del Fuerte,Tetra Brik 210 g,9.27,9.27,NO,Disponible,HTTP Request + DOM Parser
+2026-09-28 18:02:59,Dunosusa Mérida,Mérida,Abarrotes,Galletas Marías Gamesa,Rollo 170 g,17.71,17.71,NO,Disponible,HTTP Request + DOM Parser

@@ -1,0 +1,120 @@
+{
+  "type": "FeatureCollection",
+  "name": "tianguis_comercio_via_publica_merida",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id_tianguis": "TIAN-01",
+        "nombre": "Tianguis de la Macroplaza / Polígono 108",
+        "zona": "Oriente",
+        "ubicación": "Camellón Calle 35 x 14 y 18 Polígono 108",
+        "dias_operacion": "Domingo (06:00 a 14:00)",
+        "puestos_autorizados": 320,
+        "giro_predominante": "Frutas, verduras, ropa, herramientas, abarrotes y antojitos",
+        "nivel_precios": "Muy Económico",
+        "tipo_administracion": "Permiso Municipal Temporal (Subdirección de Mercados)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-89.574210, 20.985410]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id_tianguis": "TIAN-02",
+        "nombre": "Tianguis de Residencial Chenkú",
+        "zona": "Poniente",
+        "ubicación": "Parque Los Arcos Calle 40 x 21 y 23 Chenkú",
+        "dias_operacion": "Martes y Sábado (07:00 a 13:00)",
+        "puestos_autorizados": 110,
+        "giro_predominante": "Verduras locales, tortillas a mano, queso de bola y carnes",
+        "nivel_precios": "Económico-Medio",
+        "tipo_administracion": "Permiso Municipal Temporal (Subdirección de Mercados)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-89.659120, 21.003150]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id_tianguis": "TIAN-03",
+        "nombre": "Tianguis del Parque de la Paz / Centenario",
+        "zona": "Centro-Poniente",
+        "ubicación": "Calle 59 x Av. Itzaes frente al Parque Zoológico",
+        "dias_operacion": "Domingo (08:00 a 16:00)",
+        "puestos_autorizados": 180,
+        "giro_predominante": "Antojitos yucatecos, calzado, frutas de temporada y abarrotes",
+        "nivel_precios": "Económico",
+        "tipo_administracion": "Permiso Municipal Temporal (Subdirección de Mercados)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-89.638540, 20.970820]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id_tianguis": "TIAN-04",
+        "nombre": "Tianguis de San Roque / San José Tecoh",
+        "zona": "Sur",
+        "ubicación": "Calle 54 x 131 y 133 San José Tecoh",
+        "dias_operacion": "Miércoles y Domingo (06:00 a 13:00)",
+        "puestos_autorizados": 240,
+        "giro_predominante": "Canasta básica a bajo costo, pollo fresco beneficiado, recados y abarrotes",
+        "nivel_precios": "Muy Económico",
+        "tipo_administracion": "Permiso Municipal Temporal (Subdirección de Mercados)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-89.624100, 20.919850]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id_tianguis": "TIAN-05",
+        "nombre": "Tianguis de Francisco de Montejo",
+        "zona": "Norte",
+        "ubicación": "Parque El Kiosko Calle 50 x 41 y 43",
+        "dias_operacion": "Jueves y Domingo (07:00 a 13:30)",
+        "puestos_autorizados": 150,
+        "giro_predominante": "Productos orgánicos, repostería, verduras seleccionadas y comida preparada",
+        "nivel_precios": "Medio-Alto",
+        "tipo_administracion": "Permiso Municipal Temporal (Subdirección de Mercados)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-89.651420, 21.034110]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id_tianguis": "TIAN-06",
+        "nombre": "Tianguis de Ciudad Caucel (Hacienda Caucel)",
+        "zona": "Poniente",
+        "ubicación": "Calle 62 x 31 y 37 Fracc. La Herradura Ciudad Caucel",
+        "dias_operacion": "Sábado y Domingo (06:30 a 14:00)",
+        "puestos_autorizados": 280,
+        "giro_predominante": "Frutas, legumbres, mariscos congelados, lácteos y carnes rojas",
+        "nivel_precios": "Económico",
+        "tipo_administracion": "Permiso Municipal Temporal (Subdirección de Mercados)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-89.702540, 20.999810]
+      }
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "type": "FeatureCollection",
+  "name": "ar_spatial_anchors_merida",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "anchor_id": "AR-ANCHOR-001",
+        "lugar": "Mercado Lucas de Gálvez - Acceso Principal Calle 65",
+        "tipo_ancla": "GeospatialTerrainAnchor",
+        "altitud_wgs84_m": 9.35,
+        "offset_altura_suelo_m": 2.20,
+        "heading_grados": 180.0,
+        "rotacion_quaternion": {"x": 0.0, "y": 1.0, "z": 0.0, "w": 0.0},
+        "asset_3d_uri": "models/card_mercado_precios.glb",
+        "tarjeta_ar_ui": {
+          "titulo": "Mercado Lucas de Gálvez",
+          "semaforo_precios": "VERDE (Económico)",
+          "costo_canasta_promedio_semanal": 1420.00,
+          "producto_mas_barato": "Frijol Negro Jamapa ($32/kg) y Huevo ($44/kg)",
+          "ahorro_vs_supermercado_pct": "26.5%"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-89.621210, 20.964115, 9.35]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "anchor_id": "AR-ANCHOR-002",
+        "lugar": "Súper Akí Mercado - Fachada Calle 54",
+        "tipo_ancla": "GeospatialRooftopAnchor",
+        "altitud_wgs84_m": 9.40,
+        "offset_altura_suelo_m": 2.50,
+        "heading_grados": 90.0,
+        "rotacion_quaternion": {"x": 0.0, "y": 0.7071, "z": 0.0, "w": 0.7071},
+        "asset_3d_uri": "models/card_supermercado_precios.glb",
+        "tarjeta_ar_ui": {
+          "titulo": "Súper Akí Centro",
+          "semaforo_precios": "AMARILLO (Medio)",
+          "costo_canasta_promedio_semanal": 1780.00,
+          "producto_mas_barato": "Leche entera ($28/L) y Arroz ($22/kg)",
+          "ahorro_vs_supermercado_pct": "9.2%"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-89.621450, 20.962534, 9.40]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "anchor_id": "AR-ANCHOR-003",
+        "lugar": "Bodega Aurrera Ciudad Caucel",
+        "tipo_ancla": "GeospatialTerrainAnchor",
+        "altitud_wgs84_m": 8.10,
+        "offset_altura_suelo_m": 2.30,
+        "heading_grados": 270.0,
+        "rotacion_quaternion": {"x": 0.0, "y": -0.7071, "z": 0.0, "w": 0.7071},
+        "asset_3d_uri": "models/card_supermercado_precios.glb",
+        "tarjeta_ar_ui": {
+          "titulo": "Bodega Aurrera Caucel",
+          "semaforo_precios": "VERDE-AMARILLO",
+          "costo_canasta_promedio_semanal": 1690.00,
+          "producto_mas_barato": "Aceite vegetal 1-2-3 ($41/900ml) y Harina ($18/kg)",
+          "ahorro_vs_supermercado_pct": "14.1%"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-89.697520, 20.998412, 8.10]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "anchor_id": "AR-ANCHOR-004",
+        "lugar": "Chedraui Itzaes García Ginerés",
+        "tipo_ancla": "GeospatialTerrainAnchor",
+        "altitud_wgs84_m": 9.80,
+        "offset_altura_suelo_m": 2.40,
+        "heading_grados": 45.0,
+        "rotacion_quaternion": {"x": 0.0, "y": 0.3826, "z": 0.0, "w": 0.9238},
+        "asset_3d_uri": "models/card_supermercado_precios.glb",
+        "tarjeta_ar_ui": {
+          "titulo": "Chedraui Itzaes",
+          "semaforo_precios": "NARANJA (Medio-Alto)",
+          "costo_canasta_promedio_semanal": 1940.00,
+          "producto_mas_barato": "Frijol negro Chedraui ($33.50/900g)",
+          "ahorro_vs_supermercado_pct": "Referencia Base"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-89.637110, 20.981240, 9.80]
+      }
+    }
+  ]
+}

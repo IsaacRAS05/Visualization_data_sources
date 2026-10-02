@@ -1,0 +1,11 @@
+cve_ent,entidad,cve_mun,municipio,codigo_scian,descripcion_actividad,año_censo,unidades_economicas,personal_ocupado_total,remuneraciones_totales_millones_mxn,produccion_bruta_total_millones_mxn,ingresos_por_suministro_bienes_servicios_millones_mxn
+31,Yucatan,050,Merida,461110,Comercio al por menor en tiendas de abarrotes ultramarinos y miscelaneas,2019,4512,7890,142.50,1850.30,1920.40
+31,Yucatan,050,Merida,461110,Comercio al por menor en tiendas de abarrotes ultramarinos y miscelaneas,2024,5120,8940,198.20,2310.60,2415.80
+31,Yucatan,050,Merida,461121,Comercio al por menor de carnes rojas,2024,680,1420,54.80,680.40,710.20
+31,Yucatan,050,Merida,461122,Comercio al por menor de carne de aves,2024,540,1110,41.20,510.30,535.10
+31,Yucatan,050,Merida,461140,Comercio al por menor de frutas y verduras frescas,2024,890,1650,48.60,490.20,515.00
+31,Yucatan,050,Merida,461160,Comercio al por menor de tortillas de maiz y nixtamal,2024,730,1980,72.40,620.50,650.10
+31,Yucatan,050,Merida,462111,Comercio al por menor en supermercados,2019,65,4850,380.10,5820.40,6100.20
+31,Yucatan,050,Merida,462111,Comercio al por menor en supermercados,2024,84,6420,595.60,8450.10,8920.50
+31,Yucatan,000,Total Estatal Yucatan,461100,Comercio al por menor de alimentos y abarrotes,2024,18450,29800,540.20,6210.80,6520.40
+31,Yucatan,000,Total Estatal Yucatan,462111,Comercio al por menor en supermercados,2024,142,9120,780.50,11200.40,11850.20
