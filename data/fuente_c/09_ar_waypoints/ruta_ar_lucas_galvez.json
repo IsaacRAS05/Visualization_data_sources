@@ -1,0 +1,235 @@
+{
+  "schema_version": "2.0.0",
+  "project": "Estudio de Canasta Básica Mérida - AR Navigation",
+  "target_framework": "Google Geospatial Creator for Unity",
+  "location_context": {
+    "place_name": "Mercado Lucas de Gálvez",
+    "address": "Calle 56 x 65 y 67, Centro, 97000 Mérida, Yuc.",
+    "city": "Mérida",
+    "state": "Yucatán",
+    "country": "Mexico",
+    "geodetic_datum": "WGS84",
+    "vertical_datum": "EGM96 (Mean Sea Level)"
+  },
+  "route_metadata": {
+    "route_id": "AR_LUCAS_GALVEZ_CHEAP_AISLE_01",
+    "title": "Ruta AR: Acceso Calle 56 -> Pasillo Canasta Básica Económica",
+    "description": "Navegación espacial en Realidad Aumentada desde la acera pública exterior hasta la zona de frutas, verduras y abarrotes con los precios más bajos del mercado.",
+    "total_distance_meters": 115.4,
+    "estimated_walk_time_seconds": 90,
+    "difficulty": "Easy",
+    "accessibility_friendly": true
+  },
+  "waypoints": [
+    {
+      "id": "WP_01_STREET_ENTRANCE",
+      "sequence": 1,
+      "name": "Acceso Exterior Calle 56",
+      "description": "Punto de inicio en acera exterior sobre Calle 56, frente al paradero de autobuses.",
+      "geospatial_anchor": {
+        "anchor_type": "TerrainAnchor",
+        "latitude": 20.96278,
+        "longitude": -89.62245,
+        "altitude_amsl_meters": 9.2,
+        "heading_degrees": 185.0,
+        "rotation_quaternion": {
+          "x": 0.0,
+          "y": 0.998,
+          "z": 0.0,
+          "w": 0.06
+        }
+      },
+      "ar_visualization": {
+        "prefab_type": "AR_Start_Node_3D",
+        "color_hex": "#00FF66",
+        "scale": [
+          1.2,
+          1.2,
+          1.2
+        ],
+        "ui_card": {
+          "title": "¡Bienvenido al Mercado Lucas de Gálvez!",
+          "subtitle": "Iniciando guía AR hacia el Pasillo de la Canasta Básica Económica.",
+          "icon_asset": "icon_basket_cheap"
+        },
+        "audio_prompt": "Bienvenido. Siga las flechas verdes sobre el suelo para ingresar al mercado."
+      },
+      "navigation_instruction": "Avanza recto 18 metros hacia la entrada principal sobre Calle 56."
+    },
+    {
+      "id": "WP_02_MAIN_PORTAL",
+      "sequence": 2,
+      "name": "Portal de Entrada Principal Norte",
+      "description": "Acceso por el portal norte del mercado.",
+      "geospatial_anchor": {
+        "anchor_type": "GeospatialAnchor",
+        "latitude": 20.96262,
+        "longitude": -89.62247,
+        "altitude_amsl_meters": 9.35,
+        "heading_degrees": 180.0,
+        "rotation_quaternion": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0,
+          "w": 0.0
+        }
+      },
+      "ar_visualization": {
+        "prefab_type": "AR_Waypoint_Arrow_Straight",
+        "color_hex": "#00E5FF",
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "ui_card": {
+          "title": "Ingresando al Mercado",
+          "subtitle": "Entrando por la zona norte. Mantén tu cámara apuntando al pasillo.",
+          "icon_asset": "icon_door"
+        },
+        "audio_prompt": "Entra por el portal principal."
+      },
+      "navigation_instruction": "Cruza la puerta e ingresa al pasillo central. Camina 22 metros."
+    },
+    {
+      "id": "WP_03_CENTRAL_CORRIDOR_JUNCTION",
+      "sequence": 3,
+      "name": "Crujía Central - Pasillo Abarrotes",
+      "description": "Intersección entre abarrotes generales y la nave principal.",
+      "geospatial_anchor": {
+        "anchor_type": "GeospatialAnchor",
+        "latitude": 20.96242,
+        "longitude": -89.62248,
+        "altitude_amsl_meters": 9.4,
+        "heading_degrees": 178.0,
+        "rotation_quaternion": {
+          "x": 0.0,
+          "y": 0.999,
+          "z": 0.0,
+          "w": 0.035
+        }
+      },
+      "ar_visualization": {
+        "prefab_type": "AR_Turn_Left_Indicator",
+        "color_hex": "#FFD700",
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "ui_card": {
+          "title": "Desvío a Pasillo Tradicional",
+          "subtitle": "Gira levemente a la izquierda hacia la sección de frutas y verduras.",
+          "icon_asset": "icon_turn_left"
+        },
+        "audio_prompt": "Gira a la izquierda en el siguiente pasillo."
+      },
+      "navigation_instruction": "Gira a la izquierda en la zona de fruterías locales."
+    },
+    {
+      "id": "WP_04_FRUIT_AISLE_ENTRANCE",
+      "sequence": 4,
+      "name": "Entrada Pasillo Frutas y Verduras de Oxkutzcab",
+      "description": "Comienzo de la zona con venta directa de productores de la zona sur de Yucatán.",
+      "geospatial_anchor": {
+        "anchor_type": "GeospatialAnchor",
+        "latitude": 20.96241,
+        "longitude": -89.62228,
+        "altitude_amsl_meters": 9.42,
+        "heading_degrees": 92.0,
+        "rotation_quaternion": {
+          "x": 0.0,
+          "y": 0.719,
+          "z": 0.0,
+          "w": 0.695
+        }
+      },
+      "ar_visualization": {
+        "prefab_type": "AR_Waypoint_Arrow_Straight",
+        "color_hex": "#00FF66",
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "ui_card": {
+          "title": "Zona de Productores Locales",
+          "subtitle": "Aquí comienzan los precios de mayoreo en tomate, cítricos y cebolla.",
+          "icon_asset": "icon_discount"
+        },
+        "audio_prompt": "Estás ingresando al área de productores directos."
+      },
+      "navigation_instruction": "Avanza por este pasillo 25 metros. Verás puestos de cebolla y tomate en bolsa."
+    },
+    {
+      "id": "WP_05_BARGAIN_ZONE_CENTER",
+      "sequence": 5,
+      "name": "Pasillo de Remates y Bolsas Surtidas",
+      "description": "Núcleo del pasillo más barato del mercado.",
+      "geospatial_anchor": {
+        "anchor_type": "GeospatialAnchor",
+        "latitude": 20.9624,
+        "longitude": -89.62205,
+        "altitude_amsl_meters": 9.45,
+        "heading_degrees": 90.0,
+        "rotation_quaternion": {
+          "x": 0.0,
+          "y": 0.707,
+          "z": 0.0,
+          "w": 0.707
+        }
+      },
+      "ar_visualization": {
+        "prefab_type": "AR_Highlight_Zone_3D",
+        "color_hex": "#FF3366",
+        "scale": [
+          1.5,
+          1.5,
+          1.5
+        ],
+        "ui_card": {
+          "title": "¡Pasillo Más Barato Alcanzado!",
+          "subtitle": "Ahorro promedio estimado: 25% al 35% vs. supermercados en cadena.",
+          "icon_asset": "icon_best_price"
+        },
+        "audio_prompt": "Has llegado al pasillo de ofertas y verduras de temporada."
+      },
+      "navigation_instruction": "Estás en el área central de remates. Continúa 10 metros hasta el Puesto 142."
+    },
+    {
+      "id": "WP_06_DESTINATION_POI",
+      "sequence": 6,
+      "name": "Destino: Puesto 142 - 'Don José' (Frutas y Verduras)",
+      "description": "Puesto objetivo evaluado en el estudio con menor costo por kilo.",
+      "geospatial_anchor": {
+        "anchor_type": "TerrainAnchor",
+        "latitude": 20.962395,
+        "longitude": -89.62192,
+        "altitude_amsl_meters": 9.45,
+        "heading_degrees": 88.0,
+        "rotation_quaternion": {
+          "x": 0.0,
+          "y": 0.695,
+          "z": 0.0,
+          "w": 0.719
+        }
+      },
+      "ar_visualization": {
+        "prefab_type": "AR_Pin_Destination_3D",
+        "color_hex": "#76FF03",
+        "scale": [
+          2.0,
+          2.0,
+          2.0
+        ],
+        "ui_card": {
+          "title": "Puesto 142: Don José",
+          "subtitle": "Bolsas de $20 y $30 MXN. Tomate local, cebolla y chile serrano al mejor precio.",
+          "icon_asset": "icon_check_destination"
+        },
+        "audio_prompt": "Has llegado a tu destino. Puesto 142, Don José."
+      },
+      "navigation_instruction": "Llegaste a tu destino. Completa tu compra de canasta básica aquí."
+    }
+  ]
+}
