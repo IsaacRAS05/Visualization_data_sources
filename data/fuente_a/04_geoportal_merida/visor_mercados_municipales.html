@@ -303,6 +303,10 @@
         <span>🏛️ Mercados de Mérida</span>
       </h1>
       <p>Red oficial de abasto alimentario minorista y mayorista. Geoportal del Ayuntamiento de Mérida.</p>
+      <div style="margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #10b981; padding: 3px 10px; border-radius: 20px;">
+        <span style="width:6px; height:6px; background:#10b981; border-radius:50%; display:inline-block;"></span>
+        Datos Abiertos GeoJSON (Modo Autónomo - Sin requerir API Key)
+      </div>
 
       <div class="summary-grid">
         <div class="summary-card">
@@ -482,7 +486,7 @@
       ]
     };
 
-    // 2. Inicializar Mapa Leaflet con Tiles Oscuros CartoDB
+    // 2. Inicializar Mapa Leaflet con Múltiples Capas Cartográficas Libres (Sin API Key)
     const map = L.map('map', {
       center: [20.975, -89.630],
       zoom: 13,
@@ -491,10 +495,35 @@
 
     L.control.zoom({ position: 'topright' }).addTo(map);
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://carto.com/">CARTO</a> | Datos: Ayuntamiento de Mérida',
+    // Capa 1: CartoDB Dark (Estilo visual oscuro)
+    const cartoDark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; CARTO | Datos: Geoportal Ayuntamiento de Mérida',
       maxZoom: 19
-    }).addTo(map);
+    });
+
+    // Capa 2: OpenStreetMap Estándar (100% Libre y Abierto, NUNCA requiere API Key)
+    const osmStandard = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap | Datos: Geoportal Ayuntamiento de Mérida',
+      maxZoom: 19
+    });
+
+    // Capa 3: Satelital Esri World Imagery (Visualización aérea)
+    const esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution: '&copy; Esri World Imagery | Geoportal Mérida',
+      maxZoom: 18
+    });
+
+    // Añadir Carto Dark como capa base inicial
+    cartoDark.addTo(map);
+
+    // Control de Capas Base
+    const baseMaps = {
+      "🌙 Modo Oscuro (CartoDB)": cartoDark,
+      "🗺️ Callejero Libre (OpenStreetMap)": osmStandard,
+      "🛰️ Satelital Aéreo (Esri)": esriSat
+    };
+
+    L.control.layers(baseMaps, null, { position: 'topright' }).addTo(map);
 
     // Grupos de Capas
     const markersGroup = L.featureGroup().addTo(map);
