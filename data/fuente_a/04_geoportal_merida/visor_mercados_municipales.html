@@ -495,30 +495,30 @@
 
     L.control.zoom({ position: 'topright' }).addTo(map);
 
-    // Capa 1: CartoDB Dark (Estilo visual oscuro)
-    const cartoDark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; CARTO | Datos: Geoportal Ayuntamiento de Mérida',
-      maxZoom: 19
+    // Capa 1: Modo Oscuro Limpio (Esri Dark Canvas - 100% Libre, CERO marcas de agua, SIN API Key)
+    const esriDark = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      attribution: '&copy; Esri, HERE | Datos: Geoportal Ayuntamiento de Mérida',
+      maxZoom: 16
     });
 
     // Capa 2: OpenStreetMap Estándar (100% Libre y Abierto, NUNCA requiere API Key)
     const osmStandard = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap | Datos: Geoportal Ayuntamiento de Mérida',
+      attribution: '&copy; OpenStreetMap contributors | Datos: Geoportal Ayuntamiento de Mérida',
       maxZoom: 19
     });
 
-    // Capa 3: Satelital Esri World Imagery (Visualización aérea)
+    // Capa 3: Satelital Esri World Imagery (Fotografía aérea de alta resolución)
     const esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       attribution: '&copy; Esri World Imagery | Geoportal Mérida',
       maxZoom: 18
     });
 
-    // Añadir Carto Dark como capa base inicial
-    cartoDark.addTo(map);
+    // Añadir Esri Dark como capa base inicial limpia y sin marcas
+    esriDark.addTo(map);
 
     // Control de Capas Base
     const baseMaps = {
-      "🌙 Modo Oscuro (CartoDB)": cartoDark,
+      "🌙 Modo Oscuro (Sin Marcas)": esriDark,
       "🗺️ Callejero Libre (OpenStreetMap)": osmStandard,
       "🛰️ Satelital Aéreo (Esri)": esriSat
     };
