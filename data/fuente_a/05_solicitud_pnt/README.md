@@ -13,6 +13,28 @@ En proyectos de ciencia de datos, urbanismo y políticas públicas, las solicitu
 
 ## Archivos en esta carpeta:
 * **Fuente A:** `solicitud_formal_merida.md` (Solicitud formal ingresada al Ayuntamiento de Mérida `YUC - Mérida` sobre el padrón de locatarios y cuotas de derecho de piso en mercados públicos).
-* **Fuente B (EXTRA 1):** `solicitud_pnt_central_abasto_merida.md` (Solicitud PNT formal dirigida a la Central de Abasto de Mérida `YUC - Central de Abasto Mérida` sobre volumen mensual en toneladas de alimentos y tarifas de pesaje).
 * `plantilla_registro_folio.json`: Estructura para registrar los folios oficiales, fecha de solicitud y estatus de respuesta.
+
+---
+
+## ⏳ Estatus de la Solicitud y Plan de Contingencia (Plan B)
+
+* **Estatus Actual:** 🟡 **EN ESPERA DE RESPUESTA FORMAL (Plazo: 15 días hábiles)**.
+* **Fecha límite estimada:** 19 de Octubre de 2026.
+* **Acción de monitoreo:** Revisar semanalmente el buzón de la PNT con el folio asignado.
+
+### 🏛️ Plan B: Instituciones Alternativas si no responden o se declaran incompetentes:
+Si el H. Ayuntamiento de Mérida no entrega los datos o clasifica la información como inexistente:
+1. **SEFOET (Secretaría de Fomento Económico y Trabajo de Yucatán):**
+   * *Sujeto obligado PNT:* `YUC - SEFOET`.
+   * *Datos a solicitar:* Estadísticas de abasto comercial y padrón de intermediarios agroalimentarios del estado.
+2. **SEDER (Secretaría de Desarrollo Rural del Estado de Yucatán):**
+   * *Sujeto obligado PNT:* `YUC - SEDER`.
+   * *Datos a solicitar:* Centros de acopio y rutas de distribución de huevo, carne de cerdo y cítricos hacia la zona metropolitana de Mérida.
+3. **PROFECO Delegación Yucatán (Federal):**
+   * *Sujeto obligado PNT:* `PROFECO`.
+   * *Datos a solicitar:* Expediente de quejas, inspecciones y sanciones a comercios de alimentos y canasta básica en Mérida.
+4. **DIF Yucatán / DICONSA Sureste:**
+   * *Sujeto obligado PNT:* `YUC - Sistema para el Desarrollo Integral de la Familia en Yucatán` o `SEGALMEX/DICONSA`.
+   * *Datos a solicitar:* Padrón de beneficiarios de paquetes alimentarios y tiendas comunitarias en comisarías de Mérida.
 

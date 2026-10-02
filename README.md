@@ -82,3 +82,15 @@ Para comprobar el estado y resumen de los 18 datasets en cualquier momento, ejec
 ```bash
 python scripts/verificar_datasets.py
 ```
+
+---
+
+## 📌 Control de Estado y Notas de Ejecución
+
+* **Plataforma Nacional de Transparencia (PNT - 05-A y 05-B):**
+  * 🟡 **Estado:** En espera de respuesta formal del H. Ayuntamiento de Mérida y Central de Abasto (plazo legal: 15 días hábiles).
+  * 🛡️ **Plan B (Instituciones de respaldo):** Si no entregan la información, se solicitará de inmediato a **SEFOET Yucatán**, **SEDER Yucatán** o **PROFECO Delegación Yucatán**.
+* **Encuestas en Campo (07-A y 07-B):**
+  * 📋 Contamos con 25 encuestas de hogares y 5 tienditas auditadas en piloto. Los instrumentos y cuestionarios están listos para ampliar la muestra en colonias de Mérida.
+* **Scraping de Supermercados y Farmacias (06-A y 06-B):**
+  * 💻 Scripts funcionales con pausas éticas (2-5 segundos) para no saturar servidores ni gatillar bloqueos de IP (WAF/Cloudflare).
