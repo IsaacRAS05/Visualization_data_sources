@@ -1,6 +1,7 @@
 # Solicitud de Información Pública: Central de Abasto de Mérida (Fuente B - PNT)
 
 ### Sujeto Obligado en la PNT:
+
 * **Estado:** Yucatán
 * **Institución / Sujeto Obligado:** `YUC - Central de Abasto Mérida` (o `Central de Abasto de Mérida O.P.D.`)
 
@@ -27,6 +28,7 @@ Solicito que la información sea entregada a través del sistema electrónico de
 ---
 
 ### Datos que faciliten la búsqueda (Opcional):
+
 ```text
 Dirección Operativa de la Central de Abasto de Mérida, Periférico Poniente Km 39.5. Reportes de pesaje, aforos de carga y bodegas mayoristas.
 ```
@@ -34,6 +36,7 @@ Dirección Operativa de la Central de Abasto de Mérida, Periférico Poniente Km
 ---
 
 ### Estado del Trámite:
+
 * **Folio PNT:** `REGISTRO_DISPONIBLE_PARA_EL_EQUIPO`
 * **Medio de entrega seleccionado:** Electrónico vía PNT (Gratuito).
 * **Plazo legal de entrega:** 15 días hábiles.

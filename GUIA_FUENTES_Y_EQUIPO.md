@@ -12,12 +12,12 @@ Este documento es la **guía oficial para el equipo**. Explica el título elegid
 
 ### 🏆 Título Oficial:
 
-> **"Trabajar para Vivir, no solo para Comer: Hacia un Poder Adquisitivo Digno"**
+> **"Del Mundo a la Esquina: ¿Cuánto Cuesta Comer?"**
 
-### ¿Por qué elegimos este título?
+## ¿Por qué elegimos este título?
 
 1. **Es *catchy* y humano:** Le da la vuelta al dicho clásico *"trabajar para comer o comer para trabajar"*. Plantea una postura positiva: el objetivo del trabajo no es la simple supervivencia biológica, sino el bienestar y la dignidad.
-2. **Es multiescalar:** El subtítulo aclara que no es un proyecto cerrado solo a Mérida; toma como base los estándares internacionales y nacionales, y usa a Mérida como el laboratorio de validación en la calle.
+3. **Es multiescalar:** El subtítulo aclara que no es un proyecto cerrado solo a Mérida; toma como base los estándares internacionales y nacionales, y usa a Mérida como el laboratorio de validación en la calle.
 
 ---
 
@@ -51,10 +51,10 @@ Este documento es la **guía oficial para el equipo**. Explica el título elegid
 ## 3. Matriz Maestra: Las 27 Fuentes de Datos (3 por Categoría)
 
 Para cumplir con el requerimiento del profesor (**3 fuentes por cada uno de los 9 tipos de datos = 27 fuentes en total**):
+
 * ✅ **Fuente A (9 datasets):** Descargadas e integradas en el repositorio.
 * ✅ **Fuente B (9 datasets):** **¡Recién generadas e integradas en el repositorio!** (18 fuentes listas en total).
 * 📝 **Fuente C (9 datasets restantes):** Quedan asignadas como tareas específicas para que los integrantes del equipo las aporten según los enlaces y guías aquí descritas.
-
 
 ---
 
@@ -206,3 +206,4 @@ Como la **Fuente A** y la **Fuente B** ya están 100% integradas en el repositor
 
 Con esto, el proyecto tendrá los **27 datasets completos (3 por cada uno de los 9 tipos)** sin que nadie se repita.
 
+🔗 **Repositorio GitHub:** [IsaacRAS05/Visualization_data_sources](https://github.com/IsaacRAS05/Visualization_data_sources)
