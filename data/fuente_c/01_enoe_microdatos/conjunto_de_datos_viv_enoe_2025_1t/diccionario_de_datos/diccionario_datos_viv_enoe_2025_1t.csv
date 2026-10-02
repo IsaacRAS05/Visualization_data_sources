@@ -1,0 +1,26 @@
+NOMBRE_CAMPO,LONGITUD,TIPO,NEMÓNICO,CATÁLOGO,RANGO_CLAVES                                                              
+Número de la localidad,4,C,loc,loc,0001-9998
+Número de municipio según entidad,3,C,mun,mun,001-575
+Estrato nacional y estatal,2,C,est,,"Primer dígito 1-4, Segundo dígito 0-4"
+Estrato de diseño trimestral,4,C,est_d_tri,,0001-9999
+Estrato de diseño mensual,4,C,est_d_men,,0001-9999
+Número de ageb del marco nacional,5,C,ageb,,00001-99999
+Tamaño de localidad trimestral,1,C,t_loc_tri,t_loc_tri,[1-4]
+Tamaño de localidad mensual,1,C,t_loc_men,t_loc_men,[0-4]
+Ciudad autorrepresentada,2,C,cd_a,cd_a,"01-52, 81-86"
+Entidad,2,C,ent,ent,[01-32]
+Control,5,C,con,,00001-99999
+Unidad primaria de muestreo,7,C,upm,,0000001-9999999
+Distribución semanal,3,C,d_sem,,"Primer dígito 1-5, Segundo y tercer dígito 01-13"
+Número progresivo de la vivienda,4,C,n_pro_viv,,0001-9999
+Vivienda seleccionada,2,C,v_sel,v_sel,[01-99]
+Numero de entrevista o visita,2,C,n_ent,n_ent,[1-5]
+Periodo,3,C,per,,"Primer dígito 1-4, Segundo y tercer dígito 00-99"
+Pregunta 1 ¿Cuántas personas viven normalmente en esta vivienda contando a los niños chiquitos y a los ancianos?,2,C,p1,p1,[01-99]
+Pregunta 2 ¿Todas estas personas comparten un mismo gasto para comer?,1,C,p2,p2,[1-2]
+Pregunta 3 ¿Cuántos hogares o grupos de personas tienen gastos separados para comer contando el de usted?,2,C,p3,p3,[02-09]
+Urbano/Rural,1,N,ur,ur,[1-2]
+Tipo de entrevista,1,C,tipo,tipo,[1-2]
+Mes calendario,2,C,mes_cal,mes_cal,"01-12, 96-99"
+Ponderador trimestral,6,N,fac_tri,,1-999999
+Ponderador mensual,6,N,fac_men,,1-999999
